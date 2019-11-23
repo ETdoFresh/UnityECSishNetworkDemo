@@ -18,15 +18,19 @@ namespace ECSish
         public Entity()
         {
             if (instance == null) instance = this;
-            var types = typeof(MonoBehaviourComponentData).Assembly.GetTypes();
-            foreach (var type in types)
-                if (type.IsSubclassOf(typeof(MonoBehaviourComponentData)))
-                    Instance.components.Add(type, new HashSet<MonoBehaviourComponentData>());
         }
 
         public static IEnumerable<MonoBehaviourComponentData> GetComponents<T>() where T : MonoBehaviourComponentData
         {
-            return Instance.components[typeof(T)];
+            return GetComponents(typeof(T));
+        }
+
+        private static HashSet<MonoBehaviourComponentData> GetComponents(Type type)
+        {
+            if (!Instance.components.ContainsKey(type))
+                Instance.components.Add(type, new HashSet<MonoBehaviourComponentData>());
+
+            return Instance.components[type];
         }
 
         public static void Add(MonoBehaviourComponentData component)
@@ -44,13 +48,13 @@ namespace ECSish
             while (Instance.toBeAddedComponent.Count > 0)
             {
                 var component = Instance.toBeAddedComponent.Dequeue();
-                Instance.components[component.GetType()].Add(component);
+                GetComponents(component.GetType()).Add(component);
             }
 
             while (Instance.toBeRemovedCompenent.Count > 0)
             {
                 var component = Instance.toBeRemovedCompenent.Dequeue();
-                Instance.components[component.GetType()].Remove(component);
+                GetComponents(component.GetType()).Remove(component);
             }
         }
 
