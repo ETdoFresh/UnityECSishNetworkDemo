@@ -4,5 +4,74 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Network Tutorial/00_UISetup/0_SplitScreen.unity
+    guid: 7afaeb10b60c8124db73c5e2c2a05e58
+  - enabled: 1
+    path: Assets/Network Tutorial/00_UISetup/0_TestUI.unity
+    guid: 083d06e6283aafd4a9c1797c31b3161f
+  - enabled: 1
+    path: Assets/Network Tutorial/01_SendReceive/1_PeerToPeer.unity
+    guid: 0d769508892e544409c686cebca1200a
+  - enabled: 1
+    path: Assets/Network Tutorial/01_SendReceive/1_SplitScreen.unity
+    guid: 3de7837c7acb84242b1c5d1469b94a47
+  - enabled: 1
+    path: Assets/Network Tutorial/02_ClientServer/2_Client.unity
+    guid: 47abf856cf12977489917a7ac3c8f29e
+  - enabled: 1
+    path: Assets/Network Tutorial/02_ClientServer/2_Server.unity
+    guid: 4e02203c1aeadfe49a47442d59a34b20
+  - enabled: 1
+    path: Assets/Network Tutorial/02_ClientServer/2_SplitScreen.unity
+    guid: 42e6d06a5dc86b04ca2f1b82fa28301a
+  - enabled: 1
+    path: Assets/Network Tutorial/03_Network/3_Client.unity
+    guid: 8a83dc58d59b04745b1392d47b691e42
+  - enabled: 1
+    path: Assets/Network Tutorial/03_Network/3_Server.unity
+    guid: 822878dd82a5f5b4094f5b0c555c77ee
+  - enabled: 1
+    path: Assets/Network Tutorial/03_Network/3_SplitScreen.unity
+    guid: cf48b107660c5e740a250f76643db98c
+  - enabled: 1
+    path: Assets/Network Tutorial/04_Session/4_Client.unity
+    guid: ec75cc26f20499d4daaf8ad47d257a5c
+  - enabled: 1
+    path: Assets/Network Tutorial/04_Session/4_Server.unity
+    guid: e5b7c41195aca444681a5930589b4ee2
+  - enabled: 1
+    path: Assets/Network Tutorial/04_Session/4_SplitScreen.unity
+    guid: 4bf292a9b64dde34ca31d5d7f53911c3
+  - enabled: 1
+    path: Assets/Network Tutorial/04a_Serialization/4a_Example.unity
+    guid: 9ae502515611e5b4e8cc54d608ba5789
+  - enabled: 1
+    path: Assets/Network Tutorial/05_Commands/5_Client.unity
+    guid: 9867b39105b31a14eaf2b08e550cb632
+  - enabled: 1
+    path: Assets/Network Tutorial/05_Commands/5_Server.unity
+    guid: a59cf18be9e9877438dcffc2b5f06ced
+  - enabled: 1
+    path: Assets/Network Tutorial/05_Commands/5_SplitScreen.unity
+    guid: 7ceaf9bde1e7f97468cb4d869bc9055b
+  - enabled: 1
+    path: Assets/Network Tutorial/06_WorldState/6_Client.unity
+    guid: 05b5071336b1ac848a4e1390d56c158a
+  - enabled: 1
+    path: Assets/Network Tutorial/06_WorldState/6_Server.unity
+    guid: bd1faca9118605547aa2fa0dbb1fbed7
+  - enabled: 1
+    path: Assets/Network Tutorial/06_WorldState/6_SplitScreen.unity
+    guid: cc723a12199611c4bb39ea894f1dd74d
+  - enabled: 1
+    path: Assets/Network Tutorial/07_InterpolateMovement/7_Client.unity
+    guid: e39c9f60510833e4aa886a9bb9cf39dc
+  - enabled: 1
+    path: Assets/Network Tutorial/07_InterpolateMovement/7_Server.unity
+    guid: d771a016f72cfc149b25e920c0a2b9ad
+  - enabled: 1
+    path: Assets/Network Tutorial/07_InterpolateMovement/7_SplitScreen.unity
+    guid: 55af8ddc18ab1c848a0288500d5ff1e1
   m_configObjects: {}
