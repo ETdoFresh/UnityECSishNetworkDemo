@@ -2,5 +2,5 @@
 
 public class OnAcceptedEvent : MonoBehaviourComponentData 
 {
-    public TCPClientConnection connection;
+    public object connection;
 }

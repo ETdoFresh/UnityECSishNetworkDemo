@@ -10,7 +10,11 @@ public class OutputOnAcceptedEventToConsole : MonoBehaviourSystem
             var uiConsole = GetEntity<UIConsole>();
             if (uiConsole == null) continue;
             var textMesh = uiConsole.Item1.textMesh;
-            textMesh.text += $"{onAcceptedEvent.connection.host}:{onAcceptedEvent.connection.port} connected!\n";
+            object connection = onAcceptedEvent.connection;
+            if (connection is TCPClientConnection tcpConnection)
+                textMesh.text += $"{tcpConnection.host}:{tcpConnection.port} connected!\n";
+            else
+                textMesh.text += $"Client connected!\n";
         }
     }
 }

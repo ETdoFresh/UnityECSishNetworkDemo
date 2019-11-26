@@ -7,7 +7,7 @@ public class CreateLocalClientOnSendEventOnInputFieldSubmitEvent : MonoBehaviour
         var entities = GetEntities<InputFieldSubmitEvent>();
         foreach (var entity in entities)
         {
-            var client = GetEntity<LocalClient>();
+            var client = GetEntity<Client>();
             if (client != null)
             {
                 var sender = client.Item1.gameObject;

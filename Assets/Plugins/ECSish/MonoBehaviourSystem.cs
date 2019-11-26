@@ -7,6 +7,13 @@ namespace ECSish
 {
     public class MonoBehaviourSystem : MonoBehaviour
     {
+        private bool isGlobalSystem;
+
+        private void Awake()
+        {
+            isGlobalSystem = GetComponent<GlobalSystem>();
+        }
+
         public IEnumerable<Tuple<T1>> GetEntities<T1>()
             where T1 : MonoBehaviourComponentData
         {
@@ -14,7 +21,7 @@ namespace ECSish
             {
                 if (!component1) continue;
                 if (!component1.enabled) continue;
-                if (component1.gameObject.scene.handle != gameObject.scene.handle && gameObject.scene.handle != DontDestroyOnLoadScene.Scene.handle) continue;
+                if (!isGlobalSystem && component1.gameObject.scene.handle != gameObject.scene.handle) continue;
                 yield return new Tuple<T1>((T1)component1);
             }
         }
@@ -27,7 +34,7 @@ namespace ECSish
             {
                 if (!component1) continue;
                 if (!component1.enabled) continue;
-                if (component1.gameObject.scene.handle != gameObject.scene.handle && gameObject.scene.handle != DontDestroyOnLoadScene.Scene.handle) continue;
+                if (!isGlobalSystem && component1.gameObject.scene.handle != gameObject.scene.handle) continue;
                 foreach (var component2 in Entity.GetComponents<T2>())
                 {
                     if (!component2) continue;
@@ -47,7 +54,7 @@ namespace ECSish
             {
                 if (!component1) continue;
                 if (!component1.enabled) continue;
-                if (component1.gameObject.scene.handle != gameObject.scene.handle && gameObject.scene.handle != DontDestroyOnLoadScene.Scene.handle) continue;
+                if (!isGlobalSystem && component1.gameObject.scene.handle != gameObject.scene.handle) continue;
                 foreach (var component2 in Entity.GetComponents<T2>())
                 {
                     if (!component2) continue;
@@ -74,7 +81,7 @@ namespace ECSish
             {
                 if (!component1) continue;
                 if (!component1.enabled) continue;
-                if (component1.gameObject.scene.handle != gameObject.scene.handle && gameObject.scene.handle != DontDestroyOnLoadScene.Scene.handle) continue;
+                if (!isGlobalSystem && component1.gameObject.scene.handle != gameObject.scene.handle) continue;
                 foreach (var component2 in Entity.GetComponents<T2>())
                 {
                     if (!component2) continue;

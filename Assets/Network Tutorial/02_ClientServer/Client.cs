@@ -1,6 +1,3 @@
 ﻿using ECSish;
 
-public class Client : MonoBehaviourComponentData
-{
-
-}
+public class Client : MonoBehaviourComponentData { }

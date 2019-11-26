@@ -1,23 +1,28 @@
 ﻿using ECSish;
+using System.Linq;
 
 public class ConnectLocalClientToLocalServer : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var clientEntity in GetEntities<LocalClient>())
+        var servers = GetEntities<Server>().Select(e => e.Item1);
+        var clients = GetEntities<Client>().Select(e => e.Item1);
+        var clientConnections = GetEntities<ClientConnection>().Select(e => e.Item1);
+
+        foreach (var client in clients)
         {
-            var client = clientEntity.Item1;
-            foreach (var serverEntity in GetEntities<LocalServer>())
+            if (clientConnections.Select(cc => (Client)cc.connection == client).Count() == 0)
             {
-                var server = serverEntity.Item1;
-                if (!server.clients.Contains(client))
+                foreach (var server in servers)
                 {
-                    server.clients.Add(client);
-                    client.server = server;
+                    var clientConnectionGameObject = server.gameObject.scene.NewGameObject();
+                    var clientConnection = clientConnectionGameObject.AddComponent<ClientConnection>();
+                    clientConnection.connection = client;
+                    server.clients.Add(clientConnection);
                     EventSystem.Add(() =>
                     {
-                        var onAcceptEvent = server.gameObject.AddComponent<OnLocalClientAccepted>();
-                        onAcceptEvent.client = client;
+                        var onAcceptEvent = server.gameObject.AddComponent<OnAcceptedEvent>();
+                        onAcceptEvent.connection = clientConnection;
                         return onAcceptEvent;
                     });
                 }

@@ -28,10 +28,4 @@ public class RegisterNewSessionOnConnect : MonoBehaviourSystem
             EventUtility.CreateOnSendEvent(client.gameObject, message);
         }
     }
-
-    private void OnSent(IAsyncResult ar)
-    {
-        var client = (TCPClient)ar.AsyncState;
-        client.socket.EndSend(ar);
-    }
 }

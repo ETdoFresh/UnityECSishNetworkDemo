@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2995363935357119435}
   - component: {fileID: 2995363935357119434}
   - component: {fileID: 2995363935357119444}
+  - component: {fileID: -6181358431471731870}
   m_Layer: 0
-  m_Name: TCPServer
+  m_Name: _03_TCPServer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,8 +57,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4969c6f4c6c5c9c4fb037309499c3cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unityNetworking: {fileID: 0}
   host: localhost
   port: 9999
   isListening: 0
   isAccepting: 0
   clients: []
+--- !u!114 &-6181358431471731870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995363935357119445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 583708532, guid: ccdd06262fbf4ef468e9300d46334475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  server:
+    hostNameOrAddress: 
+    port: 0
+  host: localhost
+  port: 11000
+  OnServerOpen:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityNetworking.UnityEventObject, UnityNetworking, Version=0.1.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnServerClose:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityNetworking.UnityEventObject, UnityNetworking, Version=0.1.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityNetworking.UnityEventObjectSocket, UnityNetworking, Version=0.1.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnMessage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityNetworking.UnityEventObjectMessageSocket, UnityNetworking, Version=0.1.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityNetworking.UnityEventObjectSocket, UnityNetworking, Version=0.1.0.0,
+      Culture=neutral, PublicKeyToken=null

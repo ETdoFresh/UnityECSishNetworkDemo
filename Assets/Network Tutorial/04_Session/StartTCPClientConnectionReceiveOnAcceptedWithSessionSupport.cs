@@ -12,7 +12,7 @@ public class StartTCPClientConnectionReceiveOnAcceptedWithSessionSupport : MonoB
     {
         foreach (var entity in GetEntities<OnAcceptedEvent, TCPServer>())
         {
-            var newClient = entity.Item1.connection;
+            var newClient = (TCPClientConnection)entity.Item1.connection;
             newClient.socket.BeginReceive(newClient.buffer, 0, newClient.buffer.Length, SocketFlags.None, OnReceive, newClient);
             newClient.isReceiving = true;
         }

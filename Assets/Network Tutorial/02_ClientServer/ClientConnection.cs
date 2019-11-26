@@ -1,3 +1,6 @@
 ﻿using ECSish;
 
-public class ClientConnection : MonoBehaviourComponentData { }
+public class ClientConnection : MonoBehaviourComponentData 
+{
+    public object connection;
+}

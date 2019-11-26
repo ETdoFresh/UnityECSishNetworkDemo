@@ -1,17 +1,22 @@
 ﻿using ECSish;
 using System.Net.Sockets;
+using UnityEngine;
 using UnityNetworking;
 
-public class TCPClient : MonoBehaviourComponentData
+[RequireComponent(typeof(TCPClientUnity))]
+public class TCPClientWrapper : MonoBehaviourComponentData
 {
-    public TCPClientUnity unityNetworking = new TCPClientUnity();
+    public TCPClientUnity unityNetworking;
     public string host;
     public int port;
     public bool isConnected;
-    public bool isReceiving;
     public Socket socket;
     public byte[] buffer = new byte[16384];
 
+    private void Awake()
+    {
+        unityNetworking = GetComponent<TCPClientUnity>();
+    }
     private void OnDisable()
     {
         if (socket != null)
