@@ -5,7 +5,7 @@ public class SendToOtherLocalPeers : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<OnSendEvent, LocalPeerClient>())
+        foreach(var entity in GetAllEntities<OnSendEvent, LocalPeerClient>())
         {
             var message = entity.Item1.message;
             var peer = entity.Item2;

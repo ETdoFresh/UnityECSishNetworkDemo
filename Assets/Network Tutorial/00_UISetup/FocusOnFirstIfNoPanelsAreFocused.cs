@@ -5,7 +5,7 @@ public class FocusOnFirstIfNoPanelsAreFocused : MonoBehaviourSystem
 {
     private void Update()
     {
-        var entities = GetEntities<SplitScreenPanel>();
+        var entities = GetAllEntities<SplitScreenPanel>();
         var focusedPanels = entities.Where(e => e.Item1.isFocused);
 
         if (focusedPanels.Count() == 0 && entities.Count() > 0)

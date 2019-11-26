@@ -5,7 +5,7 @@ public class ResizeSplitScreenCamera : MonoBehaviourSystem
 {
     private void Update()
     {
-        var entities = GetEntities<SplitScreenCamera>();
+        var entities = GetAllEntities<SplitScreenCamera>();
 
         if (entities.Count() == 1)
         {
