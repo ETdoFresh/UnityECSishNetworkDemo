@@ -1,8 +1,10 @@
 ﻿using ECSish;
 using System.Net.Sockets;
+using UnityNetworking;
 
 public class TCPClient : MonoBehaviourComponentData
 {
+    public TCPClientUnity unityNetworking = new TCPClientUnity();
     public string host;
     public int port;
     public bool isConnected;

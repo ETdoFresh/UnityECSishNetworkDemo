@@ -1,9 +1,11 @@
 ﻿using ECSish;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using UnityNetworking;
 
 public class TCPServer : MonoBehaviourComponentData
 {
+    public TCPServerUnity unityNetworking;
     public string host;
     public int port;
     public bool isListening;

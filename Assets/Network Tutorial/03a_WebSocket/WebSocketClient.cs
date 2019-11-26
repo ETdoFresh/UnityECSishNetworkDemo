@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
+using UnityNetworking;
 
 public class WebSocketClient : MonoBehaviourComponentData
 {
+    public WebSocketClientUnity unityNetworking = new WebSocketClientUnity();
     public string url;
     public bool isConnected;
     public bool hasPerformedHandshake;
