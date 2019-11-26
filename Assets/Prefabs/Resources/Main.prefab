@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 2342959854175261940}
   - component: {fileID: 6583036390834172074}
   - component: {fileID: 8524024402024306031}
+  - component: {fileID: 8496408258524165404}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -114,11 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffa17adf6aca99408cd6982a29c5a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 0}
-  resourceFinder: {fileID: 0}
-  musicMixerPrefab: {fileID: 341517572336988537, guid: 9bb2cf1a5172a73459da5fea3c99222e,
-    type: 3}
-  musicMixer: {fileID: 0}
 --- !u!114 &2342959854175261940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +154,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene:
     m_Handle: 0
+--- !u!114 &8496408258524165404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000317644102516888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217fc15cf765b3f488866680a6cf2dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 0.5
+  texture2D: {fileID: 0}
+  alpha: 0
 --- !u!1001 &8455716542916840094
 PrefabInstance:
   m_ObjectHideFlags: 0

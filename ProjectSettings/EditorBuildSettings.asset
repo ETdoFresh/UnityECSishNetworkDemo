@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Network Tutorial/SceneSelection.unity
+    guid: ad4935f611c467649bd6935c759d6134
+  - enabled: 1
     path: Assets/Network Tutorial/00_UISetup/0_SplitScreen.unity
     guid: 7afaeb10b60c8124db73c5e2c2a05e58
   - enabled: 1
