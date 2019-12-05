@@ -2,5 +2,5 @@
 
 public class OnDisconnectedFromTCPServerEvent : MonoBehaviourComponentData
 {
-    public TCPClientConnection client;
+    public object client;
 }

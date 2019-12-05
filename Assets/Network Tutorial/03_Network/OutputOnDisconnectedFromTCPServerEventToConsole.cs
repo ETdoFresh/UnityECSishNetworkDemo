@@ -12,7 +12,7 @@ public class OutputOnDisconnectedFromTCPServerEventToConsole : MonoBehaviourSyst
             if (uiConsole == null) continue;
             var textMesh = uiConsole.Item1.textMesh;
 
-            textMesh.text += $"{onDisconnectedEvent.client.host}:{onDisconnectedEvent.client.port} disconnected!\n";
+            textMesh.text += $"{((TCPClientConnection)onDisconnectedEvent.client).host}:{((TCPClientConnection)onDisconnectedEvent.client).port} disconnected!\n";
         }
     }
 }

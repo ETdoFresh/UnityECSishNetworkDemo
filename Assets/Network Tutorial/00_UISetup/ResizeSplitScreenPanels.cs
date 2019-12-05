@@ -5,7 +5,7 @@ public class ResizeSplitScreenPanels : MonoBehaviourSystem
 {
     private void Update()
     {
-        var entities = GetEntities<SplitScreenPanel>();
+        var entities = GetAllEntities<SplitScreenPanel>();
 
         if (entities.Count() == 1)
         {

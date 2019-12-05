@@ -5,9 +5,9 @@ public class HighlightFocusedPanel : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<SplitScreenHighlightPanel>())
+        foreach(var entity in GetAllEntities<SplitScreenHighlightPanel>())
         {
-            var focusPanel = GetEntities<SplitScreenPanel>().Where(e => e.Item1.isFocused).FirstOrDefault();
+            var focusPanel = GetAllEntities<SplitScreenPanel>().Where(e => e.Item1.isFocused).FirstOrDefault();
             if (focusPanel != null)
             {
                 entity.Item1.anchorMin = focusPanel.Item1.anchorMin;

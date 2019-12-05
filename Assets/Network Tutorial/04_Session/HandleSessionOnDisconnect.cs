@@ -14,7 +14,7 @@ public class HandleSessionOnDisconnect : MonoBehaviourSystem
         {
             var client = entity.Item1.client;
             foreach (var session in GetEntities<Session>())
-                if (session.Item1.connectionId == client.connectionId)
+                if (session.Item1.connectionId == ((TCPClientConnection)client).connectionId)
                     session.Item1.gameObject.AddComponent<EntityDestroyed>();
         }
     }

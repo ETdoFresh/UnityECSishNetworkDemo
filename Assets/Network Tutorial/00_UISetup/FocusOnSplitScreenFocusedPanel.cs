@@ -5,7 +5,7 @@ public class FocusOnSplitScreenFocusedPanel : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<SplitScreenFocusedPanel>())
+        foreach (var entity in GetAllEntities<SplitScreenFocusedPanel>())
         {
             var focusedPanel = entity.Item1;
             var index = focusedPanel.index;

@@ -4,8 +4,7 @@ public class CreateLocalPeerOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSy
 {
     private void Update()
     {
-        var entities = GetEntities<InputFieldSubmitEvent>();
-        foreach (var entity in entities)
+        foreach (var entity in GetEntities<InputFieldSubmitEvent>())
         {
             var peerToPeerClient = GetEntity<LocalPeerClient>();
             if (peerToPeerClient != null)
