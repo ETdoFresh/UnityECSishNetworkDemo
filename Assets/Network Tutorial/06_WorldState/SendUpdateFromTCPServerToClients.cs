@@ -62,13 +62,13 @@ public class SendUpdateFromTCPServerToClients : MonoBehaviourSystem
             foreach (var sessionEntity in GetEntities<Session>())
             {
                 var session = sessionEntity.Item1;
-                var clientConnection = GetEntities<TCPClientConnection>()
-                    .Where(c => c.Item1.connectionId == sessionEntity.Item1.connectionId)
-                    .Select(s => s.Item1)
-                    .FirstOrDefault();
+                //var clientConnection = GetEntities<SocketClientConnection>()
+                //    .Where(c => c.Item1.connectionId == sessionEntity.Item1.connectionId)
+                //    .Select(s => s.Item1)
+                //    .FirstOrDefault();
 
-                if (session && clientConnection)
-                    EventUtility.CreateOnSendEvent(clientConnection.gameObject, $"{session.id} {message}{Terminator.VALUE}");
+                //if (session && clientConnection)
+                //    EventUtility.CreateOnSendEvent(clientConnection.gameObject, $"{session.id} {message}{Terminator.VALUE}");
             }
         }
     }

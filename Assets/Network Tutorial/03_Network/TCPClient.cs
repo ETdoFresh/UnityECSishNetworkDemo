@@ -1,29 +1,51 @@
-﻿using ECSish;
-using System.Net.Sockets;
+﻿using CSharpNetworking;
+using ECSish;
 using UnityEngine;
 using UnityNetworking;
 
 [RequireComponent(typeof(TCPClientUnity))]
-public class TCPClientWrapper : MonoBehaviourComponentData
+public class TCPClient : MonoBehaviourComponentData
 {
-    public TCPClientUnity unityNetworking;
-    public string host;
-    public int port;
-    public bool isConnected;
-    public Socket socket;
-    public byte[] buffer = new byte[16384];
+    public TCPClientUnity client;
 
-    private void Awake()
+    private void OnValidate()
     {
-        unityNetworking = GetComponent<TCPClientUnity>();
+        if (!client) client = GetComponent<TCPClientUnity>();
     }
+
+    private void OnEnable()
+    {
+        Entity.Add(this);
+        client.OnOpen.AddEditorListener(OnOpen);
+        client.OnClose.AddEditorListener(OnClose);
+        client.OnMessage.AddEditorListener(OnMessage);
+    }
+
     private void OnDisable()
     {
-        if (socket != null)
+        Entity.Remove(this);
+        client.OnOpen.RemoveEditorListener(OnOpen);
+        client.OnClose.RemoveEditorListener(OnClose);
+        client.OnMessage.RemoveEditorListener(OnMessage);
+    }
+
+    private void OnOpen(Object client)
+    {
+        EventSystem.Add(() => gameObject.AddComponent<OnConnectedEvent>());
+    }
+
+    private void OnClose(Object client)
+    {
+        EventSystem.Add(() => gameObject.AddComponent<OnDisconnectedEvent>());
+    }
+
+    private void OnMessage(Object server, Message message)
+    {
+        EventSystem.Add(() =>
         {
-            if (socket.Connected) socket.Disconnect(false);
-            socket.Dispose();
-            socket = null;
-        }
+            var e = gameObject.AddComponent<OnReceiveEvent>();
+            e.message = message.data;
+            return e;
+        });
     }
 }

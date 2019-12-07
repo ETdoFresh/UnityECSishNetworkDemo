@@ -15,9 +15,6 @@ GameObject:
   - component: {fileID: 8863746035788992827}
   - component: {fileID: 9026474810053678538}
   - component: {fileID: 2029118412903935096}
-  - component: {fileID: 1134540909215901926}
-  - component: {fileID: 2027616232790120853}
-  - component: {fileID: 7269600916944544245}
   m_Layer: 0
   m_Name: 3_Server
   m_TagString: Untagged
@@ -111,43 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd2023e95d65a14a8ca840f5fc64a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1134540909215901926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4072590263493357005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee8a60d5373dbb419c7706f03ba8434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  receivedMessage: 
---- !u!114 &2027616232790120853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4072590263493357005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f371b59f99da04f9a8ec5042ce137b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7269600916944544245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4072590263493357005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34bf0c09633f90f499c24635ed07fe38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5055225627045422377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,7 +118,7 @@ PrefabInstance:
     - target: {fileID: 1752864321219972025, guid: b676ab6b4598ef442817269738f5aef6,
         type: 3}
       propertyPath: m_Name
-      value: _03_ServerSystems
+      value: Systems
       objectReference: {fileID: 0}
     - target: {fileID: 1752864321219972024, guid: b676ab6b4598ef442817269738f5aef6,
         type: 3}
@@ -215,17 +175,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5091832760484478889, guid: b676ab6b4598ef442817269738f5aef6,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8388443627123429219, guid: b676ab6b4598ef442817269738f5aef6,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1514175229549581013, guid: b676ab6b4598ef442817269738f5aef6,
         type: 3}
       propertyPath: m_Enabled
       value: 0

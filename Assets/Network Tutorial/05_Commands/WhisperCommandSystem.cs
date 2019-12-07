@@ -6,7 +6,7 @@ public class WhisperCommandSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, SocketClientConnection>())
         {
             var args = entity.Item1.args;
             if (args.Length < 3) continue;
@@ -31,9 +31,9 @@ public class WhisperCommandSystem : MonoBehaviourSystem
                     .Where(s => s.Item1.id.ToString() == reciepient || s.Item1.nickname == reciepient)
                     .Select(s => s.Item1).FirstOrDefault();
 
-                var otherClient = GetEntities<TCPClientConnection>().Where(c => c.Item1.connectionId == reciepientSession.connectionId).FirstOrDefault();
-                if (otherClient != null)
-                    EventUtility.CreateOnSendEvent(otherClient.Item1.gameObject, $"{reciepientSession.id} {chatMessage}");
+                //var otherClient = GetEntities<SocketClientConnection>().Where(c => c.Item1.connectionId == reciepientSession.connectionId).FirstOrDefault();
+                //if (otherClient != null)
+                //    EventUtility.CreateOnSendEvent(otherClient.Item1.gameObject, $"{reciepientSession.id} {chatMessage}");
             }
         }
     }

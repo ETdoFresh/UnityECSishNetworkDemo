@@ -27,7 +27,7 @@ public class AddSessionSystem : MonoBehaviourSystem
             }
         }
 
-        foreach (var entity in GetEntities<OnReceiveEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
         {
             var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (args.Length != 7) continue;
@@ -44,7 +44,7 @@ public class AddSessionSystem : MonoBehaviourSystem
                 session.connectionType = args[4];
                 session.build = args[5];
                 session.nickname = args[6];
-                session.connectionId = client.connectionId;
+                //session.connectionId = client.connectionId;
                 newSessionEntity.name += session.id;
             }
         }

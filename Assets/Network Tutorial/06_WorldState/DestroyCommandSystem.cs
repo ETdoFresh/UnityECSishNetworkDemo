@@ -5,7 +5,7 @@ public class DestroyCommandSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
         {
             var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.None);
             if (args.Length < 2) continue;

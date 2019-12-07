@@ -4,7 +4,7 @@ public class HandleTCPClientConnectionDisconnection : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<OnDisconnectedFromTCPServerEvent, TCPClientConnection>())
+        foreach(var entity in GetEntities<OnDisconnectedFromServerEvent, SocketClientConnection>())
         {
             var client = entity.Item2;
             client.gameObject.AddComponent<EntityDestroyed>();
@@ -12,8 +12,8 @@ public class HandleTCPClientConnectionDisconnection : MonoBehaviourSystem
             foreach (var sessionEntity in GetEntities<Session, EntityId>())
             {
                 var session = sessionEntity.Item1;
-                if (session.connectionId == client.connectionId)
-                    session.gameObject.AddComponent<EntityDestroyed>();
+                //if (session.connectionId == client.connectionId)
+                //    session.gameObject.AddComponent<EntityDestroyed>();
             }
 
             foreach (var tcpServerEntity in GetEntities<TCPServer>())

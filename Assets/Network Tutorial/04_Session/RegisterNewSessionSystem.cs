@@ -11,7 +11,7 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
         {
             var args = entity.Item1.message.Split(' ');
             if (args.Length != 2) continue;
@@ -30,7 +30,7 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
                 session.connectionType = client.socket.ProtocolType.ToString().ToUpper();
                 session.build = args[1];
                 session.nickname = "Guest" + Random.Range(10000, 100000);
-                session.connectionId = client.connectionId;
+                //session.connectionId = client.connectionId;
                 newSessionEntity.name += session.id;
 
                 var message = $"AddSession {session.id} {session.ip} {session.port} {session.connectionType} {session.build} {session.nickname}";
@@ -43,7 +43,7 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
 
     private void OnSent(IAsyncResult ar)
     {
-        var client = (TCPClientConnection)ar.AsyncState;
+        var client = (SocketClientConnection)ar.AsyncState;
         client.socket.EndSend(ar);
     }
 }

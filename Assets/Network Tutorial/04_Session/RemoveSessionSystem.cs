@@ -20,7 +20,7 @@ public class RemoveSessionSystem : MonoBehaviourSystem
             }
         }
 
-        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, SocketClientConnection>())
         {
             var args = entity.Item1.args;
             if (args.Length != 2) continue;

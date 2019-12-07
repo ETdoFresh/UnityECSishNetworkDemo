@@ -12,7 +12,7 @@ public class ShowInputOnUnityConsole : MonoBehaviourSystem
                 Debug.Log(message);
         }
 
-        foreach (var entity in GetEntities<OnReceiveEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
         {
             var message = entity.Item1.message;
             if (message.Contains(" Input "))

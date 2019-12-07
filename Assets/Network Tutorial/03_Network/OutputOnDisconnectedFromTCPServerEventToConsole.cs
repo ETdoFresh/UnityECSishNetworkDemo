@@ -4,7 +4,7 @@ public class OutputOnDisconnectedFromTCPServerEventToConsole : MonoBehaviourSyst
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnDisconnectedFromTCPServerEvent>())
+        foreach (var entity in GetEntities<OnDisconnectedFromServerEvent>())
         {
             var onDisconnectedEvent = entity.Item1;
 
@@ -12,7 +12,7 @@ public class OutputOnDisconnectedFromTCPServerEventToConsole : MonoBehaviourSyst
             if (uiConsole == null) continue;
             var textMesh = uiConsole.Item1.textMesh;
 
-            textMesh.text += $"{((TCPClientConnection)onDisconnectedEvent.client).host}:{((TCPClientConnection)onDisconnectedEvent.client).port} disconnected!\n";
+            textMesh.text += $"{onDisconnectedEvent.connection.host}:{onDisconnectedEvent.connection.port} disconnected!\n";
         }
     }
 }

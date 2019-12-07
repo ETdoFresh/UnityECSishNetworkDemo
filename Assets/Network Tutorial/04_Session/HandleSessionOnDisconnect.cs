@@ -10,12 +10,12 @@ public class HandleSessionOnDisconnect : MonoBehaviourSystem
                 session.Item1.gameObject.AddComponent<EntityDestroyed>();
         }
 
-        foreach (var entity in GetEntities<OnDisconnectedFromTCPServerEvent>())
+        foreach (var entity in GetEntities<OnDisconnectedFromServerEvent>())
         {
-            var client = entity.Item1.client;
-            foreach (var session in GetEntities<Session>())
-                if (session.Item1.connectionId == ((TCPClientConnection)client).connectionId)
-                    session.Item1.gameObject.AddComponent<EntityDestroyed>();
+            //var client = entity.Item1.client;
+            //foreach (var session in GetEntities<Session>())
+            //    if (session.Item1.connectionId == ((SocketClientConnection)client).connectionId)
+            //        session.Item1.gameObject.AddComponent<EntityDestroyed>();
         }
     }
 }

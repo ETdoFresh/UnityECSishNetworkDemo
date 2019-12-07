@@ -6,7 +6,7 @@ public class TestCommandSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, SocketClientConnection>())
         {
             var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.None);
             if (args.Length < 2) continue;

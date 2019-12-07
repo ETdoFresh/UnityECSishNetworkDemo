@@ -12,7 +12,7 @@ public class ShowUpdateOnUnityConsole : MonoBehaviourSystem
                 Debug.Log(message);
         }
 
-        foreach (var entity in GetEntities<OnSendEvent, TCPClientConnection>())
+        foreach (var entity in GetEntities<OnSendEvent, SocketClientConnection>())
         {
             var message = entity.Item1.message;
             if (message.Contains(" Update"))
