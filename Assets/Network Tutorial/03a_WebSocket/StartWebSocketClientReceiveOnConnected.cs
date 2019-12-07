@@ -35,7 +35,7 @@ public class StartWebSocketClientReceiveOnConnected : MonoBehaviourSystem
                 while (client.received.Count >= WebSocket.PacketLength(client.received))
                 {
                     var receivedMessage = WebSocket.BytesToString(client.received.ToArray());
-                    var messages = receivedMessage.Split(new[] { Terminator.VALUE }, StringSplitOptions.RemoveEmptyEntries);
+                    var messages = receivedMessage.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (var message in messages)
                         EventSystem.Add(() =>
                         {

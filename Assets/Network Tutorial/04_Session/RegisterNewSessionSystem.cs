@@ -34,7 +34,7 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
                 newSessionEntity.name += session.id;
 
                 var message = $"AddSession {session.id} {session.ip} {session.port} {session.connectionType} {session.build} {session.nickname}";
-                message += Terminator.VALUE;
+                message += "\r\n";
                 var bytes = Encoding.UTF8.GetBytes(message);
                 client.socket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, OnSent, client);
             }

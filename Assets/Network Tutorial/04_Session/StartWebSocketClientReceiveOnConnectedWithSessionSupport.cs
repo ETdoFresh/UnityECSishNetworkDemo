@@ -33,7 +33,7 @@ public class StartWebSocketClientReceiveOnConnectedWithSessionSupport : MonoBeha
                 while (client.received.Count >= WebSocket.PacketLength(client.received))
                 {
                     var receivedMessage = WebSocket.BytesToString(client.received.ToArray());
-                    var messages = receivedMessage.Split(new[] { Terminator.VALUE }, StringSplitOptions.RemoveEmptyEntries);
+                    var messages = receivedMessage.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     client.received.RemoveRange(0, (int)WebSocket.PacketLength(client.received));
 
                     foreach (var message in messages)
