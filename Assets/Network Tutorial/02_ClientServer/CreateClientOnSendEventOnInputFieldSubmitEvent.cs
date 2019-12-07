@@ -1,16 +1,16 @@
 ﻿using ECSish;
 
-public class CreateLocalServerOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSystem
+public class CreateClientOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSystem
 {
     private void Update()
     {
         var entities = GetEntities<InputFieldSubmitEvent>();
         foreach (var entity in entities)
         {
-            var server = GetEntity<LocalServer>();
-            if (server != null)
+            var client = GetEntity<Client>();
+            if (client != null)
             {
-                var sender = server.Item1.gameObject;
+                var sender = client.Item1.gameObject;
                 var message = entity.Item1.text;
                 EventUtility.CreateOnSendEvent(sender.gameObject, message);
             }
