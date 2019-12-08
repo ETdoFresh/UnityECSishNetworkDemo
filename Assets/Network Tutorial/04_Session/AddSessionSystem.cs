@@ -10,7 +10,7 @@ public class AddSessionSystem : MonoBehaviourSystem
         foreach (var entity in GetEntities<OnReceiveEvent, Client>())
         {
             var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-            if (args.Length != 7) return;
+            if (args.Length != 4) return;
             var command = args[0].ToLower();
             if (command == "addsession")
             {
@@ -18,11 +18,8 @@ public class AddSessionSystem : MonoBehaviourSystem
                 SceneManager.MoveGameObjectToScene(newSessionEntity, gameObject.scene);
                 var session = newSessionEntity.AddComponent<Session>();
                 session.id = Convert.ToInt32(args[1]);
-                session.ip = args[2];
-                session.port = Convert.ToInt32(args[3]);
-                session.connectionType = args[4];
-                session.build = args[5];
-                session.nickname = args[6];
+                session.build = args[2];
+                session.nickname = args[3];
                 newSessionEntity.name += session.id;
             }
         }
@@ -30,7 +27,7 @@ public class AddSessionSystem : MonoBehaviourSystem
         foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
         {
             var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-            if (args.Length != 7) continue;
+            if (args.Length != 4) continue;
             var command = args[0].ToLower();
             if (command == "addsession")
             {
@@ -39,11 +36,8 @@ public class AddSessionSystem : MonoBehaviourSystem
                 SceneManager.MoveGameObjectToScene(newSessionEntity, gameObject.scene);
                 var session = newSessionEntity.AddComponent<Session>();
                 session.id = Convert.ToInt32(args[1]);
-                session.ip = args[2];
-                session.port = Convert.ToInt32(args[3]);
-                session.connectionType = args[4];
-                session.build = args[5];
-                session.nickname = args[6];
+                session.build = args[2];
+                session.nickname = args[3];
                 //session.connectionId = client.connectionId;
                 newSessionEntity.name += session.id;
             }

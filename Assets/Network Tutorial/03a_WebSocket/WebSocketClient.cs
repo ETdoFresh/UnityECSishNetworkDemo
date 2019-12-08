@@ -1,33 +1,51 @@
-﻿using ECSish;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Sockets;
+﻿using CSharpNetworking;
+using ECSish;
+using UnityEngine;
 using UnityNetworking;
 
 public class WebSocketClient : MonoBehaviourComponentData
 {
-    public WebSocketClientUnity unityNetworking = new WebSocketClientUnity();
-    public string url;
-    public bool isConnected;
-    public bool hasPerformedHandshake;
-    public bool isReceiving;
-    public Socket socket;
-    public Stream stream;
-    public byte[] buffer = new byte[2048];
-    public List<byte> received = new List<byte>();
+    public WebSocketClientUnity client = new WebSocketClientUnity();
 
-    public enum ReadyState { Connecting, Open, Closing, Closed };
-    public ReadyState readyState = ReadyState.Closed;
-    public int websocketId = -1;
+    private void OnValidate()
+    {
+        if (!client) client = GetComponent<WebSocketClientUnity>();
+    }
+
+    private void OnEnable()
+    {
+        Entity.Add(this);
+        client.OnOpen.AddEditorListener(OnOpen);
+        client.OnClose.AddEditorListener(OnClose);
+        client.OnMessage.AddEditorListener(OnMessage);
+    }
 
     private void OnDisable()
     {
-        if (socket != null)
+        Entity.Remove(this);
+        client.OnOpen.RemoveEditorListener(OnOpen);
+        client.OnClose.RemoveEditorListener(OnClose);
+        client.OnMessage.RemoveEditorListener(OnMessage);
+    }
+
+    private void OnOpen(Object client)
+    {
+        EventSystem.Add(() => gameObject.AddComponent<OnConnectedEvent>());
+    }
+
+    private void OnClose(Object client)
+    {
+        EventSystem.Add(() => gameObject.AddComponent<OnDisconnectedEvent>());
+    }
+
+    private void OnMessage(Object server, Message message)
+    {
+        EventSystem.Add(() =>
         {
-            if (socket.Connected) socket.Disconnect(false);
-            socket.Dispose();
-            socket = null;
-        }
+            var e = gameObject.AddComponent<OnReceiveEvent>();
+            e.message = message.data;
+            return e;
+        });
     }
 }
 

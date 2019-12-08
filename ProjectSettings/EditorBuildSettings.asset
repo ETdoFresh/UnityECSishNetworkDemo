@@ -39,6 +39,12 @@ EditorBuildSettings:
     path: Assets/Network Tutorial/03_Network/3_SplitScreen.unity
     guid: cf48b107660c5e740a250f76643db98c
   - enabled: 1
+    path: Assets/Network Tutorial/03a_WebSocket/3a_Client.unity
+    guid: be9f57d25d2cfb147983a61180a50e0b
+  - enabled: 1
+    path: Assets/Network Tutorial/03a_WebSocket/3a_SplitScreen.unity
+    guid: c0b389f82cc3e65489524e17c35225de
+  - enabled: 1
     path: Assets/Network Tutorial/04_Session/4_Client.unity
     guid: ec75cc26f20499d4daaf8ad47d257a5c
   - enabled: 1

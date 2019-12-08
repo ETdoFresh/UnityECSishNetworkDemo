@@ -57,6 +57,7 @@ public class TCPServer : MonoBehaviourComponentData
         connection.socket = client;
         connection.host = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
         connection.port = ((IPEndPoint)client.RemoteEndPoint).Port;
+        connection.protocol = client.ProtocolType.ToString().ToUpper();
         clients.Add(connection);
         EventSystem.Add(() =>
         {

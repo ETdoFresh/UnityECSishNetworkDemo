@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2155069698167379299}
   - component: {fileID: 140035119}
   - component: {fileID: 2811494546230197086}
+  - component: {fileID: 7766457909943379362}
   m_Layer: 0
   m_Name: 4_Server
   m_TagString: Untagged
@@ -122,6 +123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a2487cf76f55c449f2808f6f6e06eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7766457909943379362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140035110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce69378af3bf5c46a8b326077949df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4738016457251303470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,11 +142,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6806249915379592848, guid: 5f12b4ce013797743bfc8b5e28495625,
-        type: 3}
-      propertyPath: m_Name
-      value: _4_ServerSystems
-      objectReference: {fileID: 0}
     - target: {fileID: 6806249915379592849, guid: 5f12b4ce013797743bfc8b5e28495625,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -188,6 +196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806249915379592848, guid: 5f12b4ce013797743bfc8b5e28495625,
+        type: 3}
+      propertyPath: m_Name
+      value: _4_ServerSystems
       objectReference: {fileID: 0}
     - target: {fileID: 1134540909215901926, guid: 5f12b4ce013797743bfc8b5e28495625,
         type: 3}

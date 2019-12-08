@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class RegisterNewSessionSystem : MonoBehaviourSystem
 {
@@ -24,16 +23,13 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
                 var newSessionEntity = new GameObject("Session");
                 SceneManager.MoveGameObjectToScene(newSessionEntity, gameObject.scene);
                 var session = newSessionEntity.AddComponent<Session>();
-                session.id = Session.nextId++;
-                session.ip = ((IPEndPoint)client.socket.RemoteEndPoint).Address.ToString();
-                session.port = ((IPEndPoint)client.socket.RemoteEndPoint).Port;
-                session.connectionType = client.socket.ProtocolType.ToString().ToUpper();
+                session.id = Session.GetNextId();
                 session.build = args[1];
-                session.nickname = "Guest" + Random.Range(10000, 100000);
-                //session.connectionId = client.connectionId;
+                session.nickname = "Guest" + session.id;
+                session.connection = client;
                 newSessionEntity.name += session.id;
 
-                var message = $"AddSession {session.id} {session.ip} {session.port} {session.connectionType} {session.build} {session.nickname}";
+                var message = $"AddSession {session.id} {session.build} {session.nickname}";
                 message += "\r\n";
                 var bytes = Encoding.UTF8.GetBytes(message);
                 client.socket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, OnSent, client);
