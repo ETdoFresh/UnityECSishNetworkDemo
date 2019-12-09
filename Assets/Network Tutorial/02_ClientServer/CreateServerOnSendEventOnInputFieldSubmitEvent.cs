@@ -4,15 +4,13 @@ public class CreateServerOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSyste
 {
     private void Update()
     {
-        var entities = GetEntities<InputFieldSubmitEvent>();
-        foreach (var entity in entities)
+        foreach (var entity in GetEntities<InputFieldSubmitEvent>())
         {
-            var server = GetEntity<Server>();
-            if (server != null)
+            var message = entity.Item1.text;
+            foreach (var server in GetEntities<Server>())
             {
                 var sender = server.Item1.gameObject;
-                var message = entity.Item1.text;
-                EventUtility.CreateOnSendEvent(sender.gameObject, message);
+                EventUtility.CreateOnSendEvent(sender, message);
             }
         }
     }

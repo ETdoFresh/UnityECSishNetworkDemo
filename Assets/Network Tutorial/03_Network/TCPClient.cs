@@ -6,7 +6,7 @@ using UnityNetworking;
 [RequireComponent(typeof(TCPClientUnity))]
 public class TCPClient : MonoBehaviourComponentData
 {
-    public TCPClientUnity client;
+    [SerializeField] private TCPClientUnity client;
 
     private void OnValidate()
     {
@@ -48,4 +48,7 @@ public class TCPClient : MonoBehaviourComponentData
             return e;
         });
     }
+
+    public void Send(string message) => client.Send(message);
+    public void Send(byte[] bytes) => client.Send(bytes);
 }

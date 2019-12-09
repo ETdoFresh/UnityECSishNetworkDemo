@@ -10,7 +10,7 @@ public class SendFromTCPServerToAllTCPClients : MonoBehaviourSystem
             var server = entity.Item2;
 
             foreach (var client in server.clients)
-                server.server.Send(client.socket, message);
+                server.Send(client.socket, message);
         }
     }
 }

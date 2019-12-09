@@ -11,7 +11,7 @@ public class SendFromTCPServerToTCPClientConnection : MonoBehaviourSystem
         {
             var message = entity.Item1.message;
             var client = entity.Item2.socket;
-            server.Item1.server.Send(client, message);
+            server.Item1.Send(client, message);
         }
     }
 }

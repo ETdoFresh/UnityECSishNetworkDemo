@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 [RequireComponent(typeof(TCPServerUnity))]
 public class TCPServer : MonoBehaviourComponentData
 {
-    public TCPServerUnity server;
+    [SerializeField] private TCPServerUnity server;
     public List<SocketClientConnection> clients = new List<SocketClientConnection>();
 
     private void OnValidate()
@@ -94,4 +94,8 @@ public class TCPServer : MonoBehaviourComponentData
             return e;
         });
     }
+
+    public void Send(Socket socket, string message) => server.Send(socket, message);
+    public void Send(Socket socket, byte[] bytes) => server.Send(socket, bytes);
+    public void Disconnect(Socket socket) => server.Disconnect(socket);
 }
