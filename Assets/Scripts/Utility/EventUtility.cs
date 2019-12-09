@@ -15,17 +15,5 @@ namespace ECSish
                 return onSendEvent;
             });
         }
-
-        public static void CreateOnSendFromSessionEvent(GameObject gameObject, string message)
-        {
-            EventSystem.Add(() =>
-            {
-                if (!gameObject) return null;
-                var onSendEvent = gameObject.AddComponent<OnSendFromSessionEvent>();
-                onSendEvent.message = message;
-                onSendEvent.args = message.Split(' ');
-                return onSendEvent;
-            });
-        }
     }
 }

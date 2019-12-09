@@ -1,10 +1,5 @@
 ﻿using ECSish;
-using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RegisterNewSessionSystem : MonoBehaviourSystem
 {
@@ -20,26 +15,18 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
             {
                 var client = entity.Item2;
 
-                var newSessionEntity = new GameObject("Session");
-                SceneManager.MoveGameObjectToScene(newSessionEntity, gameObject.scene);
+                var newSessionEntity = gameObject.scene.NewGameObject();
                 var session = newSessionEntity.AddComponent<Session>();
                 session.id = Session.GetNextId();
                 session.build = args[1];
                 session.nickname = "Guest" + session.id;
                 session.connection = client;
-                newSessionEntity.name += session.id;
+                session.lastReceived = Time.time;
+                session.name = "Session" + session.id;
 
                 var message = $"AddSession {session.id} {session.build} {session.nickname}";
-                message += "\r\n";
-                var bytes = Encoding.UTF8.GetBytes(message);
-                client.socket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, OnSent, client);
+                EventUtility.CreateOnSendEvent(client.gameObject, message);
             }
         }
-    }
-
-    private void OnSent(IAsyncResult ar)
-    {
-        var client = (SocketClientConnection)ar.AsyncState;
-        client.socket.EndSend(ar);
     }
 }

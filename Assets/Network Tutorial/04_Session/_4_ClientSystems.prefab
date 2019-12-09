@@ -10,16 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2132194998}
   - component: {fileID: 2132195005}
-  - component: {fileID: 7339051322844618592}
   - component: {fileID: 2132195000}
-  - component: {fileID: 431558144422593540}
   - component: {fileID: 2132195006}
   - component: {fileID: 2132195004}
-  - component: {fileID: 1588584677138734919}
   - component: {fileID: 2132194997}
   - component: {fileID: 7968909476504386568}
   - component: {fileID: 2132195002}
-  - component: {fileID: 1658758770438581987}
+  - component: {fileID: 2279143976560222780}
   m_Layer: 0
   m_Name: 4_Client
   m_TagString: Untagged
@@ -53,18 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b32c012d5893b489f7046b4fbd9be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7339051322844618592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132194993}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a02842b3428d74585c9e83410845c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2132195000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,18 +60,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2406628c8fd75594699e24c8afed2ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &431558144422593540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132194993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b811c712bec3974f8464bcefa338c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2132195006
@@ -111,18 +84,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 081c3b33c824fe34c9b42501520452e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1588584677138734919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132194993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2a80bac0a18504996e3d7947c77893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2132194997
@@ -162,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   receivedMessage: 
---- !u!114 &1658758770438581987
+--- !u!114 &2279143976560222780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132194993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caeef55355014dd4cb13aaa9e2b79924, type: 3}
+  m_Script: {fileID: 11500000, guid: 7be2a9277d735e44680dab537c92ba2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3571752981904791401
@@ -241,12 +202,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4144776461420229435, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4080133847778035374, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
+    - target: {fileID: 6849860944726001895, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -261,7 +217,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6849860944726001895, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
+    - target: {fileID: 4080133847778035374, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144776461420229435, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
         type: 3}
       propertyPath: m_Enabled
       value: 0

@@ -20,18 +20,18 @@ public class RemoveSessionSystem : MonoBehaviourSystem
             }
         }
 
-        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, SocketClientConnection>())
-        {
-            var args = entity.Item1.args;
-            if (args.Length != 2) continue;
+        //foreach (var entity in GetEntities<OnReceiveFromSessionEvent, SocketClientConnection>())
+        //{
+        //    var args = entity.Item1.args;
+        //    if (args.Length != 2) continue;
 
-            var command = args[1].ToLower();
-            if (command == "removesession")
-            {
-                foreach (var sessionEntity in GetEntities<Session>())
-                    if (sessionEntity.Item1.id == entity.Item1.sessionId)
-                        sessionEntity.Item1.gameObject.AddComponent<EntityDestroyed>();
-            }
-        }
+        //    var command = args[1].ToLower();
+        //    if (command == "removesession")
+        //    {
+        //        foreach (var sessionEntity in GetEntities<Session>())
+        //            if (sessionEntity.Item1.id == entity.Item1.sessionId)
+        //                sessionEntity.Item1.gameObject.AddComponent<EntityDestroyed>();
+        //    }
+        //}
     }
 }

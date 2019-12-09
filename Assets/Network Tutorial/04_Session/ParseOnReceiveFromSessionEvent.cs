@@ -14,14 +14,14 @@ public class ParseOnReceiveFromSessionEvent : MonoBehaviourSystem
             var args = message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (int.TryParse(args[0], out int sessionId))
             {
-                EventSystem.Add(() =>
-                {
-                    var onReceiveEvent = gameObject.AddComponent<OnReceiveFromSessionEvent>();
-                    onReceiveEvent.sessionId = sessionId;
-                    onReceiveEvent.message = message;
-                    onReceiveEvent.args = args;
-                    return onReceiveEvent;
-                });
+                //EventSystem.Add(() =>
+                //{
+                //    var onReceiveEvent = gameObject.AddComponent<OnReceiveFromSessionEvent>();
+                //    onReceiveEvent.sessionId = sessionId;
+                //    onReceiveEvent.message = message;
+                //    onReceiveEvent.args = args;
+                //    return onReceiveEvent;
+                //});
             }
         }
     }

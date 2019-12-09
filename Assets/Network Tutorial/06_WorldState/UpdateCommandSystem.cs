@@ -10,83 +10,83 @@ public class UpdateCommandSystem : MonoBehaviourSystem
 
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveFromSessionEvent, Client>())
-        {
-            var args = entity.Item1.args;
-            if (args.Length < 2) continue;
+        //foreach (var entity in GetEntities<OnReceiveFromSessionEvent, Client>())
+        //{
+        //    var args = entity.Item1.args;
+        //    if (args.Length < 2) continue;
 
-            var command = args[1].ToLower();
-            if (command == "update")
-            {
-                var remainingEntityIds = GetCurrentEntityIds();
-                var i = 2;
-                while (i < args.Length)
-                {
-                    var entityId = Convert.ToInt32(args[i++]);
-                    var prefabName = args[i++];
+        //    var command = args[1].ToLower();
+        //    if (command == "update")
+        //    {
+        //        var remainingEntityIds = GetCurrentEntityIds();
+        //        var i = 2;
+        //        while (i < args.Length)
+        //        {
+        //            var entityId = Convert.ToInt32(args[i++]);
+        //            var prefabName = args[i++];
 
-                    remainingEntityIds.RemoveAll(e => e.entityId == entityId);
+        //            remainingEntityIds.RemoveAll(e => e.entityId == entityId);
 
-                    var clientEntity = GetEntityById(entityId);
-                    if (clientEntity == null)
-                        clientEntity = CreateEntity(entityId, prefabName);
+        //            var clientEntity = GetEntityById(entityId);
+        //            if (clientEntity == null)
+        //                clientEntity = CreateEntity(entityId, prefabName);
 
-                    var movementNetworkSync = clientEntity.GetComponent<MovementNetworkSync>();
-                    if (movementNetworkSync)
-                    {
-                        if (movementNetworkSync.syncPosition)
-                        {
-                            var position = Vector3.zero;
-                            position.x = Convert.ToSingle(args[i++]);
-                            position.y = Convert.ToSingle(args[i++]);
-                            position.z = Convert.ToSingle(args[i++]);
-                            clientEntity.transform.position = position;
-                        }
-                        if (movementNetworkSync.syncRotation)
-                        {
-                            var rotation = Quaternion.identity;
-                            rotation.x = Convert.ToSingle(args[i++]);
-                            rotation.y = Convert.ToSingle(args[i++]);
-                            rotation.z = Convert.ToSingle(args[i++]);
-                            rotation.w = Convert.ToSingle(args[i++]);
-                            clientEntity.transform.rotation = rotation;
-                        }
-                        if (movementNetworkSync.syncScale)
-                        {
-                            var scale = Vector3.zero;
-                            scale.x = Convert.ToSingle(args[i++]);
-                            scale.y = Convert.ToSingle(args[i++]);
-                            scale.z = Convert.ToSingle(args[i++]);
-                            clientEntity.transform.localScale = scale;
-                        }
-                        if (movementNetworkSync.syncVelocity)
-                        {
-                            var velocity = Vector3.zero;
-                            velocity.x = Convert.ToSingle(args[i++]);
-                            velocity.y = Convert.ToSingle(args[i++]);
-                            velocity.z = Convert.ToSingle(args[i++]);
+        //            var movementNetworkSync = clientEntity.GetComponent<MovementNetworkSync>();
+        //            if (movementNetworkSync)
+        //            {
+        //                if (movementNetworkSync.syncPosition)
+        //                {
+        //                    var position = Vector3.zero;
+        //                    position.x = Convert.ToSingle(args[i++]);
+        //                    position.y = Convert.ToSingle(args[i++]);
+        //                    position.z = Convert.ToSingle(args[i++]);
+        //                    clientEntity.transform.position = position;
+        //                }
+        //                if (movementNetworkSync.syncRotation)
+        //                {
+        //                    var rotation = Quaternion.identity;
+        //                    rotation.x = Convert.ToSingle(args[i++]);
+        //                    rotation.y = Convert.ToSingle(args[i++]);
+        //                    rotation.z = Convert.ToSingle(args[i++]);
+        //                    rotation.w = Convert.ToSingle(args[i++]);
+        //                    clientEntity.transform.rotation = rotation;
+        //                }
+        //                if (movementNetworkSync.syncScale)
+        //                {
+        //                    var scale = Vector3.zero;
+        //                    scale.x = Convert.ToSingle(args[i++]);
+        //                    scale.y = Convert.ToSingle(args[i++]);
+        //                    scale.z = Convert.ToSingle(args[i++]);
+        //                    clientEntity.transform.localScale = scale;
+        //                }
+        //                if (movementNetworkSync.syncVelocity)
+        //                {
+        //                    var velocity = Vector3.zero;
+        //                    velocity.x = Convert.ToSingle(args[i++]);
+        //                    velocity.y = Convert.ToSingle(args[i++]);
+        //                    velocity.z = Convert.ToSingle(args[i++]);
 
-                            var rigidbody = clientEntity.GetComponent<Rigidbody>();
-                            if (rigidbody) rigidbody.velocity = velocity;
-                        }
+        //                    var rigidbody = clientEntity.GetComponent<Rigidbody>();
+        //                    if (rigidbody) rigidbody.velocity = velocity;
+        //                }
 
-                        if (movementNetworkSync.syncAngularVelocity)
-                        {
-                            var angularVelocity = Vector3.zero;
-                            angularVelocity.x = Convert.ToSingle(args[i++]);
-                            angularVelocity.y = Convert.ToSingle(args[i++]);
-                            angularVelocity.z = Convert.ToSingle(args[i++]);
+        //                if (movementNetworkSync.syncAngularVelocity)
+        //                {
+        //                    var angularVelocity = Vector3.zero;
+        //                    angularVelocity.x = Convert.ToSingle(args[i++]);
+        //                    angularVelocity.y = Convert.ToSingle(args[i++]);
+        //                    angularVelocity.z = Convert.ToSingle(args[i++]);
 
-                            var rigidbody = clientEntity.GetComponent<Rigidbody>();
-                            if (rigidbody) rigidbody.angularVelocity = angularVelocity;
-                        }
-                    }
-                }
+        //                    var rigidbody = clientEntity.GetComponent<Rigidbody>();
+        //                    if (rigidbody) rigidbody.angularVelocity = angularVelocity;
+        //                }
+        //            }
+        //        }
 
-                foreach (var remainingEntity in remainingEntityIds)
-                    remainingEntity.gameObject.AddComponent<EntityDestroyed>();
-            }
-        }
+        //        foreach (var remainingEntity in remainingEntityIds)
+        //            remainingEntity.gameObject.AddComponent<EntityDestroyed>();
+        //    }
+        //}
     }
 
     private List<EntityId> GetCurrentEntityIds()

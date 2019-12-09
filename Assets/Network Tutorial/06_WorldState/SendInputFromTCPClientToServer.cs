@@ -7,10 +7,6 @@ public class SendInputFromTCPClientToServer : MonoBehaviourSystem
     {
         foreach (var entity in GetEntities<TCPClientInput, SplitScreenInput>())
         {
-            var relayClient = entity.Item1.gameObject.GetComponent<RelayClient>();
-            if (relayClient && relayClient.enabled && !relayClient.joinedRoom)
-                    continue;
-
             var lastSent = entity.Item1.lastSent;
             var nextSend = lastSent + entity.Item1.sendRateInSeconds;
             if (Time.time < nextSend) continue;

@@ -7,6 +7,8 @@ public class Session : MonoBehaviourComponentData
     public int id;
     public string build;
     public string nickname;
+    public float lastReceived;
+    public float timeout = 60;
     public SocketClientConnection connection;
 
     private static Random random = new Random();

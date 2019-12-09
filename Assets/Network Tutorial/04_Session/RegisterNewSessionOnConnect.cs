@@ -1,7 +1,4 @@
 ﻿using ECSish;
-using System;
-using System.Net.Sockets;
-using System.Text;
 
 public class RegisterNewSessionOnConnect : MonoBehaviourSystem
 {
@@ -24,7 +21,6 @@ public class RegisterNewSessionOnConnect : MonoBehaviourSystem
 #elif UNITY_STANDALONE_LINUX
             message += " Linux";
 #endif
-            var bytes = Encoding.UTF8.GetBytes(message);
             EventUtility.CreateOnSendEvent(client.gameObject, message);
         }
     }
