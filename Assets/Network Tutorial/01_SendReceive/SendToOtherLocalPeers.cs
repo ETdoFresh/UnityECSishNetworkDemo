@@ -13,12 +13,7 @@ public class SendToOtherLocalPeers : MonoBehaviourSystem
             {
                 var otherPeer = otherEntity.Item1;
                 if (peer == otherPeer) continue;
-                ECSEvent.Add(() =>
-                {
-                    var receiveEvent = otherPeer.gameObject.AddComponent<OnReceiveEvent>();
-                    receiveEvent.message = message;
-                    return receiveEvent;
-                });
+                ECSEvent.Create<OnReceiveEvent>(otherPeer, message);
             }
         }
     }

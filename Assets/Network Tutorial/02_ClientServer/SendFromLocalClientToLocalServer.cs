@@ -9,12 +9,7 @@ public class SendFromLocalClientToLocalServer : MonoBehaviourSystem
             var message = entity.Item1.message;
             var client = entity.Item2;
             var server = client.server;
-            ECSEvent.Add(() =>
-            {
-                var onReceiveEvent = server.gameObject.AddComponent<OnReceiveEvent>();
-                onReceiveEvent.message = message;
-                return onReceiveEvent;
-            });
+            ECSEvent.Create<OnReceiveEvent>(server, message);
         }
     }
 }

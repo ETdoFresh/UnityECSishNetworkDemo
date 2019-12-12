@@ -15,8 +15,8 @@ public class ConnectLocalClientsToLocalServer : MonoBehaviourSystem
             {
                 server.clients.Add(newClient);
                 newClient.server = server;
-                ECSEvent.Add(() => server.gameObject.AddComponent<OnLocalClientAccepted>());
-                ECSEvent.Add(() => newClient.gameObject.AddComponent<OnLocalClientAccepted>());
+                ECSEvent.Create<OnLocalClientAccepted>(server);
+                ECSEvent.Create<OnLocalClientAccepted>(newClient);
             }
 
             var disconnectedClients = server.clients.Except(clients);
@@ -26,8 +26,8 @@ public class ConnectLocalClientsToLocalServer : MonoBehaviourSystem
                 if (disconnectedClients.Contains(disconnectedClient))
                 {
                     server.clients.RemoveAt(i);
-                    ECSEvent.Add(() => server.gameObject.AddComponent<OnLocalClientDisconnected>());
-                    ECSEvent.Add(() => disconnectedClient.gameObject.AddComponent<OnLocalClientDisconnected>());
+                    ECSEvent.Create<OnLocalClientDisconnected>(server);
+                    ECSEvent.Create<OnLocalClientDisconnected>(disconnectedClient);
                 }
             }
         }

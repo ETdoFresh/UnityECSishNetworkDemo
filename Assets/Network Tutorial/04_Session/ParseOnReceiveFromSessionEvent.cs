@@ -22,12 +22,7 @@ public class ParseOnReceiveFromSessionEvent : MonoBehaviourSystem
                 var session = sessions.Where(s => s.Item1.id == sessionId).FirstOrDefault();
                 if (session != null)
                 {
-                    ECSEvent.Add(() =>
-                    {
-                        var onReceiveEvent = session.Item1.gameObject.AddComponent<OnReceiveEvent>();
-                        onReceiveEvent.message = message;
-                        return onReceiveEvent;
-                    });
+                    ECSEvent.Create<OnReceiveEvent>(session.Item1, message);
                 }
             }
         }

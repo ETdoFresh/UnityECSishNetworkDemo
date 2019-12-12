@@ -31,22 +31,17 @@ public class TCPClient : MonoBehaviourComponentData
 
     private void OnOpen(Object client)
     {
-        ECSEvent.Add(() => gameObject.AddComponent<OnConnectedEvent>());
+        ECSEvent.Create<OnConnectedEvent>(gameObject);
     }
 
     private void OnClose(Object client)
     {
-        ECSEvent.Add(() => gameObject.AddComponent<OnDisconnectedEvent>());
+        ECSEvent.Create<OnDisconnectedEvent>(gameObject);
     }
 
     private void OnMessage(Object server, Message message)
     {
-        ECSEvent.Add(() =>
-        {
-            var e = gameObject.AddComponent<OnReceiveEvent>();
-            e.message = message.data;
-            return e;
-        });
+        ECSEvent.Create<OnReceiveEvent>(gameObject, message.data);
     }
 
     public void Send(string message) => client.Send(message);

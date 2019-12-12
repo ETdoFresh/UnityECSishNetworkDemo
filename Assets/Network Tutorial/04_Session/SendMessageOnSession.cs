@@ -11,12 +11,12 @@ public class SendMessageOnSession : MonoBehaviourSystem
             var message = $"{session.id} {sendEvent.message}";
 
             if (session.connection != null)
-                EventUtility.CreateOnSendEvent(session.connection.gameObject, message);
+                ECSEvent.Create<OnSendEvent>(session.connection.gameObject, message);
             else
             {
                 var client = GetEntity<Client>();
                 if (client != null)
-                    EventUtility.CreateOnSendEvent(client.Item1.gameObject, message);
+                    ECSEvent.Create<OnSendEvent>(client.Item1.gameObject, message);
             }
         }
     }

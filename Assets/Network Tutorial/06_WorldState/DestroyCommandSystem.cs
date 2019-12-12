@@ -21,7 +21,7 @@ public class DestroyCommandSystem : MonoBehaviourSystem
                         toBeDestroyed.Item1.gameObject.AddComponent<EntityDestroyed>();
 
                 var message = $"Entity Id {entityId} has been destroyed.";
-                EventUtility.CreateOnSendEvent(client.gameObject, message);
+                ECSEvent.Create<OnSendEvent>(client.gameObject, message);
             }
         }
     }

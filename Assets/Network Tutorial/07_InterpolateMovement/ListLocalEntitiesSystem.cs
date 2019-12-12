@@ -6,7 +6,7 @@ public class ListLocalEntitiesSystem : MonoBehaviourSystem
     {
         foreach (var entity in GetEntities<OnSendEvent>())
         {
-            var args = entity.Item1.args;
+            var args = entity.Item1.Args;
             if (args.Length < 1) continue;
 
             var command = args.Length == 1 ? args[0].ToLower() : args[1].ToLower();

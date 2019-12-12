@@ -10,7 +10,7 @@ public class CreateMessageOnClientSessionOnInputFieldSubmit : MonoBehaviourSyste
             foreach (var sessionEntity in GetEntities<Session>())
             {
                 var session = sessionEntity.Item1;
-                EventUtility.CreateOnSendEvent(session.gameObject, message);
+                ECSEvent.Create<OnSendEvent>(session.gameObject, message);
             }
         }
     }

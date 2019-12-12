@@ -3,5 +3,5 @@
 public class OnSendEvent : MonoBehaviourComponentData
 {
     public string message;
-    public string[] args;
+    public string[] Args => message.Split(' ');
 }
