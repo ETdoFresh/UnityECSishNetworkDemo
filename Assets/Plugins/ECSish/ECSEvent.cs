@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ECSish
 {
-    public class EventSystem : MonoBehaviourSystem
+    public class ECSEvent : MonoBehaviourSystem
     {
         private static Queue queue = Queue.Synchronized(new Queue());
         private static List<MonoBehaviourComponentData> eventComponents =

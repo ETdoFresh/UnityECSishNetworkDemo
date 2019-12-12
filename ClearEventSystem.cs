@@ -4,7 +4,7 @@
     {
         private void Update()
         {
-            EventSystem.ClearEvents();
+            ECSEvent.ClearEvents();
 
             foreach (var entity in GetAllEntities<EntityDestroyed>())
                 if(entity.Item1 && entity.Item1.gameObject)

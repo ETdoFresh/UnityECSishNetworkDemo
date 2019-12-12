@@ -9,7 +9,7 @@ namespace ECSish
             var collider = collision.collider;
             var relativeVelocity = collision.relativeVelocity;
             var impulse = collision.impulse;
-            EventSystem.Add(() => {
+            ECSEvent.Add(() => {
                 var component = gameObject.AddComponent<CollisionEnterEvent>();
                 component.collider = collider;
                 component.relativeVelocity = relativeVelocity;
