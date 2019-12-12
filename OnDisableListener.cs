@@ -6,9 +6,8 @@ namespace ECSish
     {
         private void OnDisable()
         {
-            ECSEvent.Add(() => gameObject.AddComponent<OnDisableEvent>());
+            ECSEvent.Create<OnDisableEvent>(gameObject);
         }
-
     }
 
     public class OnDisableEvent : MonoBehaviourComponentData { }
