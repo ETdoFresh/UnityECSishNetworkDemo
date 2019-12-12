@@ -15,7 +15,7 @@ public class DisconnectCommandSystem : MonoBehaviourSystem
                 var clientEntity = entity.Item1.gameObject;
                 var client = clientEntity.GetComponent<Client>();
                 if (client)
-                    EventSystem.Add(() => client.gameObject.AddComponent<OnDisconnectedEvent>());
+                    ECSEvent.Add(() => client.gameObject.AddComponent<OnDisconnectedEvent>());
             }
         }
     }

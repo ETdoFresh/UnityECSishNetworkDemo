@@ -6,7 +6,7 @@ namespace ECSish
     {
         public static void CreateOnSendEvent(GameObject gameObject, string message)
         {
-            EventSystem.Add(() =>
+            ECSEvent.Add(() =>
             {
                 if (!gameObject) return null;
                 var onSendEvent = gameObject.AddComponent<OnSendEvent>();

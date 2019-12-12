@@ -28,7 +28,7 @@ public class InputFieldEventListener : MonoBehaviour
         var text = inputField.text;
         if (text.Trim() != "")
         {
-            EventSystem.Add(() =>
+            ECSEvent.Add(() =>
             {
                 var submitEvent = gameObject.AddComponent<InputFieldSubmitEvent>();
                 submitEvent.text = text;

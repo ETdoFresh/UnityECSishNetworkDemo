@@ -6,7 +6,7 @@ namespace ECSish
     {
         private void OnEnable()
         {
-            EventSystem.Add(() => gameObject.AddComponent<OnEnableEvent>());
+            ECSEvent.Add(() => gameObject.AddComponent<OnEnableEvent>());
         }
 
     }

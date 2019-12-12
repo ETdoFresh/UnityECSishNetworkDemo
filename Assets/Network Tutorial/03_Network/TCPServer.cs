@@ -41,12 +41,12 @@ public class TCPServer : MonoBehaviourComponentData
 
     private void OnServerOpen(Object server)
     {
-        EventSystem.Add(() => gameObject.AddComponent<OnListeningEvent>());
+        ECSEvent.Add(() => gameObject.AddComponent<OnListeningEvent>());
     }
 
     private void onServerClose(Object server)
     {
-        EventSystem.Add(() => gameObject.AddComponent<OnStopListeningEvent>());
+        ECSEvent.Add(() => gameObject.AddComponent<OnStopListeningEvent>());
     }
 
     private void OnOpen(Object server, Socket client)
@@ -59,7 +59,7 @@ public class TCPServer : MonoBehaviourComponentData
         connection.port = ((IPEndPoint)client.RemoteEndPoint).Port;
         connection.protocol = client.ProtocolType.ToString().ToUpper();
         clients.Add(connection);
-        EventSystem.Add(() =>
+        ECSEvent.Add(() =>
         {
             var e = gameObject.AddComponent<OnAcceptedEvent>();
             e.connection = connection;
@@ -73,7 +73,7 @@ public class TCPServer : MonoBehaviourComponentData
         if (connection == null) return;
         
         clients.Remove(connection);
-        EventSystem.Add(() =>
+        ECSEvent.Add(() =>
         {
             var e = gameObject.AddComponent<OnDisconnectedFromServerEvent>();
             e.connection = connection;
@@ -87,7 +87,7 @@ public class TCPServer : MonoBehaviourComponentData
         var connection = clients.Where(c => c.socket == clientMessage.client).FirstOrDefault();
         if (connection == null) return;
 
-        EventSystem.Add(() =>
+        ECSEvent.Add(() =>
         {
             var e = connection.gameObject.AddComponent<OnReceiveEvent>();
             e.message = clientMessage.data;
