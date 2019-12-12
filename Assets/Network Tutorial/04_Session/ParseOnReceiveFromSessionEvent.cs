@@ -4,11 +4,9 @@ using System.Linq;
 
 public class ParseOnReceiveFromSessionEvent : MonoBehaviourSystem
 {
-    public string receivedMessage;
-
     private void Update()
     {
-        var entities = GetEntities<OnReceiveEvent>();
+        var entities = GetEntities<OnReceiveEvent, SocketClientConnection>();
         if (entities.Count() == 0) return;
 
         var sessions = GetEntities<Session>();
