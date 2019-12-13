@@ -6,12 +6,12 @@ public class CreateLocalPeerOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSy
     {
         foreach (var entity in GetEntities<InputFieldSubmitEvent>())
         {
+            var message = entity.Item1.text;
             var peerToPeerClient = GetEntity<LocalPeerClient>();
             if (peerToPeerClient != null)
             {
                 var sender = peerToPeerClient.Item1.gameObject;
-                var message = entity.Item1.text;
-                EventUtility.CreateOnSendEvent(sender.gameObject, message);
+                ECSEvent.Create<OnSendEvent>(sender, message);
             }
         }
     }

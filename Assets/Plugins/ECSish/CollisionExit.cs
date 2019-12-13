@@ -7,15 +7,10 @@ namespace ECSish
         private void OnCollisionExit(Collision collision)
         {
             var collider = collision.collider;
+            var force = 0;
             var relativeVelocity = collision.relativeVelocity;
             var impulse = collision.impulse;
-            EventSystem.Add(() => {
-                var component = gameObject.AddComponent<CollisionExitEvent>();
-                component.collider = collider;
-                component.relativeVelocity = relativeVelocity;
-                component.impulse = impulse;
-                return component;
-            });
+            ECSEvent.Create<CollisionExitEvent>(gameObject, collider, force, relativeVelocity, impulse);
         }
     }
 }

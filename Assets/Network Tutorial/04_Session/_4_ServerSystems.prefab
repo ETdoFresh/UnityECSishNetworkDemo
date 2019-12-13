@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7766457909943379362}
   - component: {fileID: 1089590158973463048}
   - component: {fileID: 4791644849823243077}
+  - component: {fileID: 3116398439151191333}
   m_Layer: 0
   m_Name: 4_Server
   m_TagString: Untagged
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140035110}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a61be09c4285b364fa3814210430ed53, type: 3}
   m_Name: 
@@ -147,6 +148,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be2a9277d735e44680dab537c92ba2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3116398439151191333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140035110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3f475dc76f845468cf09750b951fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4738016457251303470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,11 +167,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6806249915379592848, guid: 5f12b4ce013797743bfc8b5e28495625,
-        type: 3}
-      propertyPath: m_Name
-      value: _4_ServerSystems
-      objectReference: {fileID: 0}
     - target: {fileID: 6806249915379592849, guid: 5f12b4ce013797743bfc8b5e28495625,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,6 +221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806249915379592848, guid: 5f12b4ce013797743bfc8b5e28495625,
+        type: 3}
+      propertyPath: m_Name
+      value: _4_ServerSystems
       objectReference: {fileID: 0}
     - target: {fileID: 1134540909215901926, guid: 5f12b4ce013797743bfc8b5e28495625,
         type: 3}

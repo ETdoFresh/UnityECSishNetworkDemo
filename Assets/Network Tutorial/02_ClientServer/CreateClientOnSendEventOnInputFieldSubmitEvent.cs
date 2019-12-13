@@ -10,7 +10,7 @@ public class CreateClientOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSyste
             foreach (var client in GetEntities<Client>())
             {
                 var sender = client.Item1.gameObject;
-                EventUtility.CreateOnSendEvent(sender, message);
+                ECSEvent.Create<OnSendEvent>(sender, message);
             }
         }
     }

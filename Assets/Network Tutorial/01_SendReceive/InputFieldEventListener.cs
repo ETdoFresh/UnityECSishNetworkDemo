@@ -26,15 +26,10 @@ public class InputFieldEventListener : MonoBehaviour
     public void CreateSubmitEvent()
     {
         var text = inputField.text;
+
         if (text.Trim() != "")
-        {
-            EventSystem.Add(() =>
-            {
-                var submitEvent = gameObject.AddComponent<InputFieldSubmitEvent>();
-                submitEvent.text = text;
-                return submitEvent;
-            });
-        }
+            ECSEvent.Create<InputFieldSubmitEvent>(gameObject, text);
+
         inputField.text = "";
         inputField.ActivateInputField();
     }

@@ -11,7 +11,7 @@ public class ConnectCommandSystem : MonoBehaviourSystem
 
             var command = args[0].ToLower();
             if (command == "connect")
-                EventSystem.Add(() => entity.Item2.gameObject.AddComponent<OnConnectingEvent>());
+                ECSEvent.Create<OnConnectingEvent>(entity.Item2);
         }
     }
 }

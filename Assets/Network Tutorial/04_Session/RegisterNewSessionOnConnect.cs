@@ -21,7 +21,7 @@ public class RegisterNewSessionOnConnect : MonoBehaviourSystem
 #elif UNITY_STANDALONE_LINUX
             message += " Linux";
 #endif
-            EventUtility.CreateOnSendEvent(client.gameObject, message);
+            ECSEvent.Create<OnSendEvent>(client.gameObject, message);
         }
     }
 }

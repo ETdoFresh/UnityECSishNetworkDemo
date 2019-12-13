@@ -10,7 +10,7 @@ public class CreateServerOnSendEventOnInputFieldSubmitEvent : MonoBehaviourSyste
             foreach (var server in GetEntities<Server>())
             {
                 var sender = server.Item1.gameObject;
-                EventUtility.CreateOnSendEvent(sender, message);
+                ECSEvent.Create<OnSendEvent>(sender, message);
             }
         }
     }

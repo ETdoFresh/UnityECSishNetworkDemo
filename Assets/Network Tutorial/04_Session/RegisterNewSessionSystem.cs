@@ -25,7 +25,7 @@ public class RegisterNewSessionSystem : MonoBehaviourSystem
                 session.name = "Session" + session.id;
 
                 var message = $"AddSession {session.id} {session.build} {session.nickname}";
-                EventUtility.CreateOnSendEvent(client.gameObject, message);
+                ECSEvent.Create<OnSendEvent>(client.gameObject, message);
             }
         }
     }

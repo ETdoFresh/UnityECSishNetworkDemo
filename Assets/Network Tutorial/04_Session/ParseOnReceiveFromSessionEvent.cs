@@ -1,27 +1,27 @@
 ﻿using ECSish;
 using System;
+using System.Linq;
 
 public class ParseOnReceiveFromSessionEvent : MonoBehaviourSystem
 {
-    public string receivedMessage;
-
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveEvent>())
+        var entities = GetEntities<OnReceiveEvent, SocketClientConnection>();
+        if (entities.Count() == 0) return;
+
+        var sessions = GetEntities<Session>();
+        foreach (var entity in entities)
         {
             var gameObject = entity.Item1.gameObject;
             var message = entity.Item1.message;
             var args = message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (int.TryParse(args[0], out int sessionId))
             {
-                //EventSystem.Add(() =>
-                //{
-                //    var onReceiveEvent = gameObject.AddComponent<OnReceiveFromSessionEvent>();
-                //    onReceiveEvent.sessionId = sessionId;
-                //    onReceiveEvent.message = message;
-                //    onReceiveEvent.args = args;
-                //    return onReceiveEvent;
-                //});
+                var session = sessions.Where(s => s.Item1.id == sessionId).FirstOrDefault();
+                if (session != null)
+                {
+                    ECSEvent.Create<OnReceiveEvent>(session.Item1, message);
+                }
             }
         }
     }

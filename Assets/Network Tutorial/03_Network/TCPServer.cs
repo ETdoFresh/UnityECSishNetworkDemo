@@ -44,12 +44,12 @@ public class TCPServer : MonoBehaviourComponentData
 
     private void OnServerOpen(Object server)
     {
-        EventSystem.Add(() => gameObject.AddComponent<OnListeningEvent>());
+        ECSEvent.Create<OnListeningEvent>(gameObject);
     }
 
     private void onServerClose(Object server)
     {
-        EventSystem.Add(() => gameObject.AddComponent<OnStopListeningEvent>());
+        ECSEvent.Create<OnStopListeningEvent>(gameObject);
     }
 
     private void OnOpen(Object server, Socket client)
@@ -62,12 +62,7 @@ public class TCPServer : MonoBehaviourComponentData
         connection.port = ((IPEndPoint)client.RemoteEndPoint).Port;
         connection.protocol = client.ProtocolType.ToString().ToUpper();
         clients.Add(connection);
-        EventSystem.Add(() =>
-        {
-            var e = gameObject.AddComponent<OnAcceptedEvent>();
-            e.connection = connection;
-            return e;
-        });
+        ECSEvent.Create<OnAcceptedEvent>(gameObject, connection);
     }
 
     private void OnClose(Object server, Socket client)
@@ -76,12 +71,7 @@ public class TCPServer : MonoBehaviourComponentData
         if (connection == null) return;
         
         clients.Remove(connection);
-        EventSystem.Add(() =>
-        {
-            var e = gameObject.AddComponent<OnDisconnectedFromServerEvent>();
-            e.connection = connection;
-            return e;
-        });
+        ECSEvent.Create<OnDisconnectedFromServerEvent>(gameObject, connection);
         Entity.Destroy(connection.gameObject);
     }
 
@@ -90,12 +80,7 @@ public class TCPServer : MonoBehaviourComponentData
         var connection = clients.Where(c => c.socket == clientMessage.client).FirstOrDefault();
         if (connection == null) return;
 
-        EventSystem.Add(() =>
-        {
-            var e = connection.gameObject.AddComponent<OnReceiveEvent>();
-            e.message = clientMessage.data;
-            return e;
-        });
+        ECSEvent.Create<OnReceiveEvent>(connection, clientMessage.data);
     }
 
     private void OnError(Object server, Exception exception)
