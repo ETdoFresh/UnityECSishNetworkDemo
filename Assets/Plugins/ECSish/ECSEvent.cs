@@ -19,6 +19,8 @@ namespace ECSish
         {
             queue.Enqueue(new Func<MonoBehaviourComponentData>(() =>
             {
+                if (!gameObject) return null;
+                
                 var ev = gameObject.AddComponent<T>();
                 for (int i = 0; i < objs.Length; i++)
                     typeof(T).GetFields()[i].SetValue(ev, objs[i]);
