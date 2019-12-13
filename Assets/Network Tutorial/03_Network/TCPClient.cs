@@ -1,7 +1,9 @@
 ﻿using CSharpNetworking;
 using ECSish;
+using System;
 using UnityEngine;
 using UnityNetworking;
+using Object = UnityEngine.Object;
 
 [RequireComponent(typeof(TCPClientUnity))]
 public class TCPClient : MonoBehaviourComponentData
@@ -15,10 +17,11 @@ public class TCPClient : MonoBehaviourComponentData
 
     private void OnEnable()
     {
-        Entity.Add(this);
         client.OnOpen.AddEditorListener(OnOpen);
         client.OnClose.AddEditorListener(OnClose);
         client.OnMessage.AddEditorListener(OnMessage);
+        client.OnError.AddEditorListener(OnError);
+        Entity.Add(this);
     }
 
     private void OnDisable()
@@ -27,6 +30,7 @@ public class TCPClient : MonoBehaviourComponentData
         client.OnOpen.RemoveEditorListener(OnOpen);
         client.OnClose.RemoveEditorListener(OnClose);
         client.OnMessage.RemoveEditorListener(OnMessage);
+        client.OnError.RemoveEditorListener(OnError);
     }
 
     private void OnOpen(Object client)
@@ -45,6 +49,16 @@ public class TCPClient : MonoBehaviourComponentData
         {
             var e = gameObject.AddComponent<OnReceiveEvent>();
             e.message = message.data;
+            return e;
+        });
+    }
+
+    private void OnError(Object server, Exception exception)
+    {
+        EventSystem.Add(() =>
+        {
+            var e = gameObject.AddComponent<OnErrorEvent>();
+            e.exception = exception;
             return e;
         });
     }

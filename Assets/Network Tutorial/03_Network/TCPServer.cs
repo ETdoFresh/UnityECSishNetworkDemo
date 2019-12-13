@@ -1,5 +1,6 @@
 ﻿using CSharpNetworking;
 using ECSish;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,12 +22,13 @@ public class TCPServer : MonoBehaviourComponentData
 
     private void OnEnable()
     {
-        Entity.Add(this);
         server.OnServerOpen.AddEditorListener(OnServerOpen);
         server.OnServerClose.AddEditorListener(onServerClose);
         server.OnOpen.AddEditorListener(OnOpen);
         server.OnClose.AddEditorListener(OnClose);
         server.OnMessage.AddEditorListener(OnMessage);
+        server.OnError.AddEditorListener(OnError);
+        Entity.Add(this);
     }
 
     private void OnDisable()
@@ -37,6 +39,7 @@ public class TCPServer : MonoBehaviourComponentData
         server.OnOpen.RemoveEditorListener(OnOpen);
         server.OnClose.RemoveEditorListener(OnClose);
         server.OnMessage.RemoveEditorListener(OnMessage);
+        server.OnError.RemoveEditorListener(OnError);
     }
 
     private void OnServerOpen(Object server)
@@ -91,6 +94,16 @@ public class TCPServer : MonoBehaviourComponentData
         {
             var e = connection.gameObject.AddComponent<OnReceiveEvent>();
             e.message = clientMessage.data;
+            return e;
+        });
+    }
+
+    private void OnError(Object server, Exception exception)
+    {
+        EventSystem.Add(() =>
+        {
+            var e = gameObject.AddComponent<OnErrorEvent>();
+            e.exception = exception;
             return e;
         });
     }

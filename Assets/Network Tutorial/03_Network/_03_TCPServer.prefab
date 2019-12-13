@@ -79,25 +79,30 @@ MonoBehaviour:
   OnServerOpen:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityNetworking.UnityEventObject, UnityNetworking, Version=0.1.0.0,
+    m_TypeName: UnityNetworking.UnityEventObject, UnityNetworking, Version=0.1.2.0,
       Culture=neutral, PublicKeyToken=null
   OnServerClose:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityNetworking.UnityEventObject, UnityNetworking, Version=0.1.0.0,
+    m_TypeName: UnityNetworking.UnityEventObject, UnityNetworking, Version=0.1.2.0,
       Culture=neutral, PublicKeyToken=null
   OnOpen:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityNetworking.UnityEventObjectSocket, UnityNetworking, Version=0.1.0.0,
+    m_TypeName: UnityNetworking.UnityEventObjectSocket, UnityNetworking, Version=0.1.2.0,
       Culture=neutral, PublicKeyToken=null
   OnMessage:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityNetworking.UnityEventObjectMessageSocket, UnityNetworking, Version=0.1.0.0,
+    m_TypeName: UnityNetworking.UnityEventObjectMessageSocket, UnityNetworking, Version=0.1.2.0,
       Culture=neutral, PublicKeyToken=null
   OnClose:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityNetworking.UnityEventObjectSocket, UnityNetworking, Version=0.1.0.0,
+    m_TypeName: UnityNetworking.UnityEventObjectSocket, UnityNetworking, Version=0.1.2.0,
+      Culture=neutral, PublicKeyToken=null
+  OnError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityNetworking.UnityEventObjectException, UnityNetworking, Version=0.1.2.0,
       Culture=neutral, PublicKeyToken=null
