@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 public class WebSocketClient : MonoBehaviourComponentData
 {
-    public WebSocketClientUnity client = new WebSocketClientUnity();
+    public WebSocketClientUnity client;
 
     private void OnValidate()
     {
@@ -49,12 +49,7 @@ public class WebSocketClient : MonoBehaviourComponentData
 
     private void OnError(Object server, Exception exception)
     {
-        EventSystem.Add(() =>
-        {
-            var e = gameObject.AddComponent<OnErrorEvent>();
-            e.exception = exception;
-            return e;
-        });
+        ECSEvent.Create<OnErrorEvent>(gameObject, exception);
     }
 }
 

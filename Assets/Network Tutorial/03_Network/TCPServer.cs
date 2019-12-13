@@ -23,7 +23,7 @@ public class TCPServer : MonoBehaviourComponentData
     private void OnEnable()
     {
         server.OnServerOpen.AddEditorListener(OnServerOpen);
-        server.OnServerClose.AddEditorListener(onServerClose);
+        server.OnServerClose.AddEditorListener(OnServerClose);
         server.OnOpen.AddEditorListener(OnOpen);
         server.OnClose.AddEditorListener(OnClose);
         server.OnMessage.AddEditorListener(OnMessage);
@@ -35,7 +35,7 @@ public class TCPServer : MonoBehaviourComponentData
     {
         Entity.Remove(this);
         server.OnServerOpen.RemoveEditorListener(OnServerOpen);
-        server.OnServerClose.RemoveEditorListener(onServerClose);
+        server.OnServerClose.RemoveEditorListener(OnServerClose);
         server.OnOpen.RemoveEditorListener(OnOpen);
         server.OnClose.RemoveEditorListener(OnClose);
         server.OnMessage.RemoveEditorListener(OnMessage);
@@ -47,7 +47,7 @@ public class TCPServer : MonoBehaviourComponentData
         ECSEvent.Create<OnListeningEvent>(gameObject);
     }
 
-    private void onServerClose(Object server)
+    private void OnServerClose(Object server)
     {
         ECSEvent.Create<OnStopListeningEvent>(gameObject);
     }
@@ -85,12 +85,7 @@ public class TCPServer : MonoBehaviourComponentData
 
     private void OnError(Object server, Exception exception)
     {
-        EventSystem.Add(() =>
-        {
-            var e = gameObject.AddComponent<OnErrorEvent>();
-            e.exception = exception;
-            return e;
-        });
+        ECSEvent.Create<OnErrorEvent>(gameObject, exception);
     }
 
     public void Send(Socket socket, string message) => server.Send(socket, message);

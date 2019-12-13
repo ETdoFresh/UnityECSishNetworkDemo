@@ -50,12 +50,7 @@ public class TCPClient : MonoBehaviourComponentData
 
     private void OnError(Object server, Exception exception)
     {
-        EventSystem.Add(() =>
-        {
-            var e = gameObject.AddComponent<OnErrorEvent>();
-            e.exception = exception;
-            return e;
-        });
+        ECSEvent.Create<OnErrorEvent>(gameObject, exception);
     }
 
     public void Send(string message) => client.Send(message);
