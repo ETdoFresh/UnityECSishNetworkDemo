@@ -51,5 +51,11 @@ public class WebSocketClient : MonoBehaviourComponentData
     {
         ECSEvent.Create<OnErrorEvent>(gameObject, exception);
     }
+
+    public void Connect() => client.enabled = true;
+    public void Disconnect() => client.enabled = false;
+
+    public void Send(string message) => client.Send(message);
+    public void Send(byte[] bytes) => client.Send(bytes);
 }
 
