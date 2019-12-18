@@ -1,6 +1,6 @@
 ﻿using ECSish;
 
-public class ShowSplitScreenOnTextUI : MonoBehaviourSystem
+public class ShowSplitScreenInputOnTextUI : MonoBehaviourSystem
 {
     private void Update()
     {
