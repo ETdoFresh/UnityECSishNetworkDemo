@@ -4,7 +4,7 @@ public class RegisterNewSessionOnConnect : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnConnectedEvent, Client>())
+        foreach (var entity in GetEntities<ClientOnOpenEvent, Client>())
         {
             var client = entity.Item2;
             if (!client) continue;

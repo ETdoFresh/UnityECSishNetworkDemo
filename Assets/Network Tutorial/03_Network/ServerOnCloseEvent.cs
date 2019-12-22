@@ -1,6 +1,6 @@
 ﻿using ECSish;
 
-public class OnAcceptedEvent : MonoBehaviourComponentData 
+public class ServerOnCloseEvent : MonoBehaviourComponentData
 {
     public SocketClientConnection connection;
 }

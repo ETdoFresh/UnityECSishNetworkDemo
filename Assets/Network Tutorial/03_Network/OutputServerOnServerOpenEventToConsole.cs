@@ -1,10 +1,10 @@
 ﻿using ECSish;
 
-public class OutputOnListeningEventToConsole : MonoBehaviourSystem
+public class OutputServerOnServerOpenEventToConsole : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnListeningEvent>())
+        foreach (var entity in GetEntities<ServerOnServerOpenEvent>())
         {
             var server = entity.Item1;
             var uiConsole = GetEntity<UIConsole>();

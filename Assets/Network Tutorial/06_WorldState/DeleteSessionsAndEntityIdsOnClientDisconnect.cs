@@ -8,7 +8,7 @@ public class DeleteSessionsAndEntityIdsOnClientDisconnect : MonoBehaviourSystem
             foreach (var sessionEntity in GetEntities<Session>())
                 sessionEntity.Item1.gameObject.AddComponent<EntityDestroyed>();
 
-        foreach (var entity in GetEntities<OnDisconnectedEvent, Client>())
+        foreach (var entity in GetEntities<ClientOnCloseEvent, Client>())
             foreach (var sessionEntity in GetEntities<Session>())
                 sessionEntity.Item1.gameObject.AddComponent<EntityDestroyed>();
 
@@ -16,7 +16,7 @@ public class DeleteSessionsAndEntityIdsOnClientDisconnect : MonoBehaviourSystem
             foreach (var networkEntity in GetEntities<EntityId>())
                 networkEntity.Item1.gameObject.AddComponent<EntityDestroyed>();
 
-        foreach (var entity in GetEntities<OnDisconnectedEvent, Client>())
+        foreach (var entity in GetEntities<ClientOnCloseEvent, Client>())
             foreach (var networkEntity in GetEntities<EntityId>())
                 networkEntity.Item1.gameObject.AddComponent<EntityDestroyed>();
     }

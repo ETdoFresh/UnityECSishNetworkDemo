@@ -4,7 +4,7 @@ public class HandleTCPClientConnectionDisconnection : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<OnDisconnectedFromServerEvent, SocketClientConnection>())
+        foreach(var entity in GetEntities<ServerOnCloseEvent, SocketClientConnection>())
         {
             var client = entity.Item2;
             client.gameObject.AddComponent<EntityDestroyed>();

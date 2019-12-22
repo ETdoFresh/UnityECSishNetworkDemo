@@ -34,12 +34,12 @@ public class WebSocketClient : MonoBehaviourComponentData
 
     private void OnOpen(Object client)
     {
-        ECSEvent.Create<OnConnectedEvent>(gameObject);
+        ECSEvent.Create<ClientOnOpenEvent>(gameObject);
     }
 
     private void OnClose(Object client)
     {
-        ECSEvent.Create<OnDisconnectedEvent>(gameObject);
+        ECSEvent.Create<ClientOnCloseEvent>(gameObject);
     }
 
     private void OnMessage(Object server, Message message)

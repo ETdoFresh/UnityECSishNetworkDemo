@@ -1,16 +1,16 @@
 ﻿using ECSish;
 
-public class OutputOnAcceptedEventToConsole : MonoBehaviourSystem
+public class OutputServerOnOpenEventToConsole : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnAcceptedEvent>())
+        foreach (var entity in GetEntities<ServerOnOpenEvent>())
         {
-            var onAcceptedEvent = entity.Item1;
+            var onOpenEvent = entity.Item1;
             var uiConsole = GetEntity<UIConsole>();
             if (uiConsole == null) continue;
             var textMesh = uiConsole.Item1.textMesh;
-            var connection = onAcceptedEvent.connection;
+            var connection = onOpenEvent.connection;
             textMesh.text += $"{connection.host}:{connection.port} connected!\n";
         }
     }

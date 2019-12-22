@@ -1,10 +1,10 @@
 ﻿using ECSish;
 
-public class OutputOnDisconnectedFromTCPServerEventToConsole : MonoBehaviourSystem
+public class OutputServerOnCloseEventToConsole : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnDisconnectedFromServerEvent>())
+        foreach (var entity in GetEntities<ServerOnCloseEvent>())
         {
             var onDisconnectedEvent = entity.Item1;
 
