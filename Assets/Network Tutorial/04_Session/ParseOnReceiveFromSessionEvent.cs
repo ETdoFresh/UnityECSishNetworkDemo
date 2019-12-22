@@ -17,6 +17,7 @@ public class ParseOnReceiveFromSessionEvent : MonoBehaviourSystem
             var args = message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (int.TryParse(args[0], out int sessionId))
             {
+                message = message.Substring(message.IndexOf(args[0]) + args[0].Length + 1);
                 var session = sessions.Where(s => s.Item1.id == sessionId).FirstOrDefault();
                 if (session != null)
                 {
