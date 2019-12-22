@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2132195005}
   - component: {fileID: 2132195000}
   - component: {fileID: 2132195006}
-  - component: {fileID: 2132195004}
   - component: {fileID: 2132194997}
   - component: {fileID: 7968909476504386568}
   - component: {fileID: 2132195002}
@@ -74,18 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde739359ff5814dab0833bfbbcb4b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2132195004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132194993}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081c3b33c824fe34c9b42501520452e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2132194997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3f475dc76f845468cf09750b951fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  receivedMessage: 
 --- !u!114 &2279143976560222780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9097369948108052134, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6849860944726001895, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
         type: 3}
       propertyPath: m_Enabled
@@ -211,11 +202,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097369948108052134, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4080133847778035374, guid: 6e5e5546eefbb844ba39597b3e2c23a2,
         type: 3}
