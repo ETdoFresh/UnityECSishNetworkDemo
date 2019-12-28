@@ -5,7 +5,7 @@ public class MoveObjectUsingTCPInput : MonoBehaviourSystem
 {
     private void FixedUpdate()
     {
-        foreach(var entity in GetEntities<TCPReceivedInput, Movement, RigidbodyComponent>())
+        foreach(var entity in GetEntities<SessionInput, Movement, RigidbodyComponent>())
         {
             var tcpInput = entity.Item1;
             var movement = entity.Item2;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1440390012014351315}
   - component: {fileID: 2995363935357119444}
   - component: {fileID: -6181358431471731870}
+  - component: {fileID: 840445459161760116}
   m_Layer: 0
   m_Name: _03_TCPServer
   m_TagString: Untagged
@@ -106,3 +107,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityNetworking.UnityEventObjectException, UnityNetworking, Version=0.1.2.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &840445459161760116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995363935357119445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb75faf00f05c64da0916e3efa942f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showUpdate: 0
+  showInput: 0

@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class SetSplitScreenTCPClientCameraCullingMask : MonoBehaviourSystem
+public class SetSplitScreenClientCameraCullingMask : MonoBehaviourSystem
 {
     private int showOnlyClient1Layer;
     private int showOnlyClient2Layer;
@@ -21,7 +21,7 @@ public class SetSplitScreenTCPClientCameraCullingMask : MonoBehaviourSystem
 
     private void Update()
     {
-        foreach (var entity in GetEntities<TrackTCPClientCameraCullingMask>())
+        foreach (var entity in GetEntities<TrackClientCameraCullingMask>())
         {
             var splitScreenClientNumber = GetEntity<SplitScreenClientNumber>();
             if (splitScreenClientNumber == null) continue;

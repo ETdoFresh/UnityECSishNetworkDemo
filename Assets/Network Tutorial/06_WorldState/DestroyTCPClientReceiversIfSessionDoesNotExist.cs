@@ -5,7 +5,7 @@ public class DestroyTCPClientReceiversIfSessionDoesNotExist : MonoBehaviourSyste
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<TCPReceivedInput>())
+        foreach(var entity in GetEntities<SessionInput>())
         {
             var session = GetEntities<Session>()
                 .Where(s => s.Item1.id == entity.Item1.sessionId)

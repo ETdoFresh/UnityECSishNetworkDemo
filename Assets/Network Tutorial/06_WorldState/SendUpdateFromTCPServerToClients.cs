@@ -49,7 +49,7 @@ public class SendUpdateFromTCPServerToClients : MonoBehaviourSystem
             }
         }
 
-        foreach (var entity in GetEntities<TCPServer, TCPServerUpdateRate>())
+        foreach (var entity in GetEntities<Server, ServerUpdateRate>())
         {
             var server = entity.Item1;
             var serverRate = entity.Item2;
@@ -62,13 +62,7 @@ public class SendUpdateFromTCPServerToClients : MonoBehaviourSystem
             foreach (var sessionEntity in GetEntities<Session>())
             {
                 var session = sessionEntity.Item1;
-                //var clientConnection = GetEntities<SocketClientConnection>()
-                //    .Where(c => c.Item1.connectionId == sessionEntity.Item1.connectionId)
-                //    .Select(s => s.Item1)
-                //    .FirstOrDefault();
-
-                //if (session && clientConnection)
-                //    EventUtility.CreateOnSendEvent(clientConnection.gameObject, $"{session.id} {message}{Terminator.VALUE}");
+                ECSEvent.Create<OnSendEvent>(session, $"{session.id} {message}");
             }
         }
     }

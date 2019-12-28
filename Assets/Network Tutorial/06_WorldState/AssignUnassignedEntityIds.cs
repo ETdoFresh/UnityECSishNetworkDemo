@@ -6,7 +6,7 @@ public class AssignUnassignedEntityIds : MonoBehaviourSystem
     {
         foreach(var entity in GetEntities<EntityId>())
         {
-            var isServer = GetEntity<TCPServer>() != null;
+            var isServer = GetEntity<Server>() != null;
             if (!isServer) continue;
 
             if (entity.Item1.entityId >= 0) continue;

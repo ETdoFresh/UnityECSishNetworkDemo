@@ -1,6 +1,6 @@
 ﻿using ECSish;
 
-public class TCPReceivedInput : MonoBehaviourComponentData
+public class SessionInput : MonoBehaviourComponentData
 {
     public int sessionId;
     public float horizontal;

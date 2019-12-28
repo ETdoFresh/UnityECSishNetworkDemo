@@ -32,7 +32,7 @@ public class CreateCommandSystem : MonoBehaviourSystem
 
                 if (prefabName.ToLower().Contains("player"))
                 {
-                    var tcpInput = instance.AddComponent<TCPReceivedInput>();
+                    var tcpInput = instance.AddComponent<SessionInput>();
                     tcpInput.sessionId = session.id;
                 }
 

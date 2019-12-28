@@ -1,15 +1,14 @@
 ﻿using ECSish;
-using System;
 
 public class ClearCommandSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveEvent, Session>())
         {
-            var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.None);
-            if (args.Length < 2) continue;
-            var command = args[1].ToLower();
+            var args = entity.Item1.Args;
+            if (args.Length < 1) continue;
+            var command = args[0].ToLower();
             var client = entity.Item2;
             if (command == "clear")
             {

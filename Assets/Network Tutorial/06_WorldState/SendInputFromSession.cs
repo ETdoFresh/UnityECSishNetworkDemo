@@ -1,11 +1,11 @@
 ﻿using ECSish;
 using UnityEngine;
 
-public class SendInputFromTCPClientToServer : MonoBehaviourSystem
+public class SendInputFromSession : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<TCPClientInput, SplitScreenInput>())
+        foreach (var entity in GetEntities<ClientInputRate, SplitScreenInput>())
         {
             var lastSent = entity.Item1.lastSent;
             var nextSend = lastSent + entity.Item1.sendRateInSeconds;

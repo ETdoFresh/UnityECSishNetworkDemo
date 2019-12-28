@@ -5,16 +5,15 @@ public class DestroyCommandSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveEvent, SocketClientConnection>())
+        foreach (var entity in GetEntities<OnReceiveEvent, Session>())
         {
-            var args = entity.Item1.message.Split(new[] { " " }, StringSplitOptions.None);
+            var args = entity.Item1.Args;
             if (args.Length < 2) continue;
-            var command = args[1].ToLower();
+            var command = args[0].ToLower();
             var client = entity.Item2;
             if (command == "destroy")
             {
-                if (args.Length < 3) continue;
-                var entityId = Convert.ToInt32(args[2]);
+                var entityId = Convert.ToInt32(args[1]);
 
                 foreach (var toBeDestroyed in GetEntities<EntityId>())
                     if (toBeDestroyed.Item1.entityId == entityId)
