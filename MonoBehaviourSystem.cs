@@ -203,5 +203,26 @@ namespace ECSish
             where T3 : MonoBehaviourComponentData
             where T4 : MonoBehaviourComponentData
             => GetEntities<T1, T2, T3, T4>().FirstOrDefault();
+
+        public Tuple<T1> GetAnyEntity<T1>() where T1 : MonoBehaviourComponentData
+            => GetAllEntities<T1>().FirstOrDefault();
+
+        public Tuple<T1, T2> GetAnyEntity<T1, T2>()
+            where T1 : MonoBehaviourComponentData
+            where T2 : MonoBehaviourComponentData
+            => GetAllEntities<T1, T2>().FirstOrDefault();
+
+        public Tuple<T1, T2, T3> GetAnyEntity<T1, T2, T3>()
+            where T1 : MonoBehaviourComponentData
+            where T2 : MonoBehaviourComponentData
+            where T3 : MonoBehaviourComponentData
+            => GetAllEntities<T1, T2, T3>().FirstOrDefault();
+
+        public Tuple<T1, T2, T3, T4> GetAnyEntity<T1, T2, T3, T4>()
+            where T1 : MonoBehaviourComponentData
+            where T2 : MonoBehaviourComponentData
+            where T3 : MonoBehaviourComponentData
+            where T4 : MonoBehaviourComponentData
+            => GetAllEntities<T1, T2, T3, T4>().FirstOrDefault();
     }
 }
