@@ -12,11 +12,28 @@ public class OutputOnSendEventToConsole : MonoBehaviourSystem
             if (uiConsole == null) continue;
             var textMesh = uiConsole.Item1.textMesh;
 
-            // TODO: Remove this with a much better system
-            if (message.Contains(" Input ")) continue;
-            if (message.Contains(" Update")) continue;
-
-            textMesh.text += $"<#808080>{message}</color>\n";
+            if (message.Contains(" Input "))
+            {
+                foreach (var debug in GetEntities<DebugShowOnConsole>())
+                    if (debug.Item1.showInput)
+                    {
+                        textMesh.text += $"<#808080>{message}</color>\n";
+                        break;
+                    }
+            }
+            else if (message.Contains("Update"))
+            {
+                foreach (var debug in GetEntities<DebugShowOnConsole>())
+                    if (debug.Item1.showUpdate)
+                    {
+                        textMesh.text += $"<#808080>{message}</color>\n";
+                        break;
+                    }
+            }
+            else
+            {
+                textMesh.text += $"<#808080>{message}</color>\n";
+            }
         }
     }
 }

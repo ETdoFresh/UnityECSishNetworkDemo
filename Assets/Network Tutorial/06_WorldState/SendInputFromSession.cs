@@ -17,8 +17,7 @@ public class SendInputFromSession : MonoBehaviourSystem
 
             lastSent = Time.time;
             var message = $"{sessionEntity.Item1.id} Input {input.horizontal} {input.vertical} {input.jumpPress}";
-            var gameObject = entity.Item1.gameObject;
-            ECSEvent.Create<OnSendEvent>(gameObject, message);
+            ECSEvent.Create<OnSendEvent>(sessionEntity.Item1, message);
         }
     }
 }

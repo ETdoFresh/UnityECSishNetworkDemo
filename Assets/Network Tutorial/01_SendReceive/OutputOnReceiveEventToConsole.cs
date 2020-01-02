@@ -12,11 +12,28 @@ public class OutputOnReceiveEventToConsole : MonoBehaviourSystem
 
             var textMesh = uiConsole.Item1.textMesh;
 
-            // TODO: Remove this with a much better system
-            if (message.Contains(" Input ")) continue; 
-            if (message.Contains(" Update")) continue;
-
-            textMesh.text += $"{message}\n";
+            if (message.Contains(" Input "))
+            {
+                foreach (var debug in GetEntities<DebugShowOnConsole>())
+                    if (debug.Item1.showInput)
+                    {
+                        textMesh.text += $"{message}\n";
+                        break;
+                    }
+            }
+            else if (message.Contains("Update"))
+            {
+                foreach (var debug in GetEntities<DebugShowOnConsole>())
+                    if (debug.Item1.showUpdate)
+                    {
+                        textMesh.text += $"{message}\n";
+                        break;
+                    }
+            }
+            else
+            {
+                textMesh.text += $"{message}\n";
+            }
         }
     }
 }

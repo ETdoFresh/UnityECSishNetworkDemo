@@ -5,7 +5,7 @@ public class SetSplitScreenClientNumber : MonoBehaviourSystem
 {
     private void Update()
     {
-        var entities = GetEntities<SplitScreenClientNumber>();
+        var entities = GetAllEntities<SplitScreenClientNumber>();
         foreach (var entity in entities)
         {
             var e = entity.Item1;

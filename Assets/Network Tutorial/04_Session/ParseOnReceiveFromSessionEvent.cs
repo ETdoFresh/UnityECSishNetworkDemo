@@ -6,14 +6,15 @@ public class ParseOnReceiveFromSessionEvent : MonoBehaviourSystem
 {
     private void Update()
     {
-        var entities = GetEntities<OnReceiveEvent, SocketClientConnection>();
-        if (entities.Count() == 0) return;
-
         var sessions = GetEntities<Session>();
-        foreach (var entity in entities)
+        var onReceiveEvents = GetEntities<OnReceiveEvent, SocketClientConnection>().Select(e => e.Item1);
+        if (onReceiveEvents.Count() == 0)
+            onReceiveEvents = GetEntities<OnReceiveEvent, Client>().Select(e => e.Item1);
+
+        foreach (var onReceiveEvent in onReceiveEvents)
         {
-            var gameObject = entity.Item1.gameObject;
-            var message = entity.Item1.message;
+            var gameObject = onReceiveEvent.gameObject;
+            var message = onReceiveEvent.message;
             var args = message.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (int.TryParse(args[0], out int sessionId))
             {

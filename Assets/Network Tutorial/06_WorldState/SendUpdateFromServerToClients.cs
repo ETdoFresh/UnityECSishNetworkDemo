@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class SendUpdateFromTCPServerToClients : MonoBehaviourSystem
+public class SendUpdateFromServerToClients : MonoBehaviourSystem
 {
     private void Update()
     {
@@ -49,10 +49,9 @@ public class SendUpdateFromTCPServerToClients : MonoBehaviourSystem
             }
         }
 
-        foreach (var entity in GetEntities<Server, ServerUpdateRate>())
+        foreach (var entity in GetEntities<ServerUpdateRate>())
         {
-            var server = entity.Item1;
-            var serverRate = entity.Item2;
+            var serverRate = entity.Item1;
             var nextSendTime = serverRate.lastUpdate + serverRate.updateRateInSeconds;
 
             if (Time.time < nextSendTime) continue;
@@ -62,7 +61,7 @@ public class SendUpdateFromTCPServerToClients : MonoBehaviourSystem
             foreach (var sessionEntity in GetEntities<Session>())
             {
                 var session = sessionEntity.Item1;
-                ECSEvent.Create<OnSendEvent>(session, $"{session.id} {message}");
+                ECSEvent.Create<OnSendEvent>(session, message);
             }
         }
     }
