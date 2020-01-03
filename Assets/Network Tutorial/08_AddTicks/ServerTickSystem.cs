@@ -5,11 +5,11 @@ public class ServerTickSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<ServerUpdateRate, ServerTick>())
+        foreach(var entity in GetEntities<ServerTick, TargetTickRate>())
         {
-            var serverUpdateRate = entity.Item1.updateRateInSeconds;
-            var serverTick = entity.Item2;
-            serverTick.tick = Mathf.RoundToInt(Time.time / serverUpdateRate);
+            var serverTick = entity.Item1;
+            var tickRate = entity.Item2.tickRate;
+            serverTick.tick = Mathf.FloorToInt(Time.time / tickRate);
         }
     }
 }

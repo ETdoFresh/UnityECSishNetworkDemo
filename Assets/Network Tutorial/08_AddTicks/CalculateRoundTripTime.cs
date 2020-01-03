@@ -4,17 +4,18 @@ public class CalculateRoundTripTime : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var serverUpdateRate in GetEntities<ServerUpdateRate>())
-            foreach (var entity in GetEntities<Session, ClientTick, RoundTripTime>())
+        foreach (var tickRateEntity in GetEntities<TargetTickRate>())
+            foreach (var entity in GetEntities<Session, SessionTick, RoundTripTime>())
             {
+                var tickRate = tickRateEntity.Item1.tickRate;
                 var session = entity.Item1;
                 var clientTick = entity.Item2;
                 var roundTripTime = entity.Item3;
 
-                var sentTime = clientTick.lastReceivedTick * serverUpdateRate.Item1.updateRateInSeconds;
+                var sentTime = clientTick.lastReceivedTick * tickRate;
                 var receivedTime = session.lastReceived;
                 var offset = session.lastOffsetReceived;
-                roundTripTime.RTT = receivedTime - sentTime - offset;
+                roundTripTime.RTT = receivedTime - (sentTime - offset);
             }
     }
 }

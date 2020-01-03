@@ -1,6 +1,6 @@
 ﻿using ECSish;
 
-public class ClientTick : MonoBehaviourComponentData
+public class SessionTick : MonoBehaviourComponentData
 {
     public int lastReceivedTick;
     public int predictedTick;

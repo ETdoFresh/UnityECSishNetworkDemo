@@ -627,8 +627,9 @@ GameObject:
   - component: {fileID: 764230116}
   - component: {fileID: 764230115}
   - component: {fileID: 764230117}
+  - component: {fileID: 764230118}
   m_Layer: 0
-  m_Name: ServerUpdateRate
+  m_Name: ServerUpdate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -647,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastUpdateSent: 0
-  updateRateInSeconds: 0.2
+  updateRateInSeconds: 0.1
 --- !u!4 &764230116
 Transform:
   m_ObjectHideFlags: 0
@@ -675,6 +676,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tick: 0
+--- !u!114 &764230118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764230114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46ab3ab218c1ac42bda550f157baf11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickRate: 0.02
 --- !u!1 &831500414
 GameObject:
   m_ObjectHideFlags: 0
