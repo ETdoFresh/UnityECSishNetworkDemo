@@ -1,12 +1,11 @@
 ﻿using ECSish;
-using System.Linq;
 using UnityEngine;
 
-public class SendUpdateFromServerToClients : MonoBehaviourSystem
+public class SendUpdateWithTick : MonoBehaviourSystem
 {
     private void Update()
     {
-        var message = "Update";
+        var message = "";
         foreach (var entity in GetEntities<EntityId, PrefabName>())
         {
             var entityId = entity.Item1.entityId;
@@ -43,25 +42,28 @@ public class SendUpdateFromServerToClients : MonoBehaviourSystem
                 {
                     var angularVelocity = Vector3.zero;
                     if (movementNetworkSync.GetComponent<Rigidbody>())
-                        angularVelocity= movementNetworkSync.GetComponent<Rigidbody>().angularVelocity;
+                        angularVelocity = movementNetworkSync.GetComponent<Rigidbody>().angularVelocity;
                     message += $" {angularVelocity.x} {angularVelocity.y} {angularVelocity.z}";
                 }
             }
         }
 
-        foreach (var entity in GetEntities<ServerUpdateRate>())
+        foreach (var entity in GetEntities<ServerUpdateRate, ServerTick>())
         {
             var serverRate = entity.Item1;
+            var serverTick = entity.Item2.tick;
             var nextSendTime = serverRate.lastUpdateSent + serverRate.updateRateInSeconds;
 
             if (Time.time < nextSendTime) continue;
 
             serverRate.lastUpdateSent = Time.time;
 
-            foreach (var sessionEntity in GetEntities<Session>())
+            foreach (var sessionEntity in GetEntities<Session, ClientTick>())
             {
                 var session = sessionEntity.Item1;
-                ECSEvent.Create<OnSendEvent>(session, message);
+                var lastPredictedTick = sessionEntity.Item2.predictedTick;
+                var offset = Time.time - session.lastReceived;
+                ECSEvent.Create<OnSendEvent>(session, $"Update {serverTick} {lastPredictedTick} {offset} {message}");
             }
         }
     }

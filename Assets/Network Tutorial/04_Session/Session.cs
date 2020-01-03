@@ -8,6 +8,7 @@ public class Session : MonoBehaviourComponentData
     public string build;
     public string nickname;
     public float lastReceived;
+    public float lastOffsetReceived;
     public float timeout = 60;
     public SocketClientConnection connection;
 
