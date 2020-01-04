@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1669,10 +1669,9 @@ GameObject:
   - component: {fileID: 1995369392}
   - component: {fileID: 1995369391}
   - component: {fileID: 1995369390}
-  - component: {fileID: 1995369393}
   - component: {fileID: 1995369389}
   - component: {fileID: 1995369395}
-  - component: {fileID: 1995369394}
+  - component: {fileID: 1995369396}
   m_Layer: 0
   m_Name: ClientInput
   m_TagString: Untagged
@@ -1738,31 +1737,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1995369393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995369388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2aee3faf98a79443af62fbda742dca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1995369394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995369388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b17b8a08e07a749bcf5cb62bff88a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RTT: 0
 --- !u!114 &1995369395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1776,6 +1750,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickRate: 0.02
+--- !u!114 &1995369396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995369388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99751d3f9e4888e468c988f6df26a520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tick: 0
 --- !u!1 &2062765704
 GameObject:
   m_ObjectHideFlags: 0

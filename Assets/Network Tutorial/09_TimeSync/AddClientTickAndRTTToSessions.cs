@@ -8,11 +8,11 @@ public class AddClientTickAndRTTToSessions : MonoBehaviourSystem
         {
             var session = entity.Item1;
             
-            var clientTick = session.GetComponent<SessionTick>();
-            if (!clientTick) Entity.Add(session.gameObject.AddComponent<SessionTick>());
+            var clientTick = session.GetComponent<ClientTick>();
+            if (!clientTick) session.gameObject.AddComponent<ClientTick>();
 
             var rtt = session.GetComponent<RoundTripTime>();
-            if (!rtt) Entity.Add(session.gameObject.AddComponent<RoundTripTime>());
+            if (!rtt) session.gameObject.AddComponent<RoundTripTime>();
         }
     }
 }

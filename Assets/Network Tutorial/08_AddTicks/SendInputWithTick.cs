@@ -6,7 +6,7 @@ public class SendInputWithTick : MonoBehaviourSystem
     private void Update()
     {
         foreach (var entity in GetEntities<ClientInputRate, SplitScreenInput, JumpQueue>())
-            foreach (var sessionEntity in GetEntities<Session, SessionTick>())
+            foreach (var sessionEntity in GetEntities<Session, ClientTick>())
             {
                 var lastSent = entity.Item1.lastSent;
                 var nextSend = lastSent + entity.Item1.sendRateInSeconds;
@@ -19,7 +19,7 @@ public class SendInputWithTick : MonoBehaviourSystem
 
                 var jumpPress = jumpQueue.Count > 0 ? jumpQueue.Dequeue() : false;
                 entity.Item1.lastSent = lastSent = Time.time;
-                var message = $"Input {clientTick.lastReceivedTick} {clientTick.predictedTick} {session.lastReceived} {input.horizontal} {input.vertical} {jumpPress}";
+                var message = $"Input {clientTick.tick} {input.horizontal} {input.vertical} {jumpPress}";
                 ECSEvent.Create<OnSendEvent>(session, message);
             }
     }

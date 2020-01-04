@@ -58,12 +58,10 @@ public class SendUpdateWithTick : MonoBehaviourSystem
 
             serverRate.lastUpdateSent = Time.time;
 
-            foreach (var sessionEntity in GetEntities<Session, SessionTick>())
+            foreach (var sessionEntity in GetEntities<Session>())
             {
                 var session = sessionEntity.Item1;
-                var lastPredictedTick = sessionEntity.Item2.predictedTick;
-                var offset = Time.time - session.lastReceived;
-                ECSEvent.Create<OnSendEvent>(session, $"Update {serverTick} {lastPredictedTick} {offset} {message}");
+                ECSEvent.Create<OnSendEvent>(session, $"Update {serverTick} {message}");
             }
         }
     }

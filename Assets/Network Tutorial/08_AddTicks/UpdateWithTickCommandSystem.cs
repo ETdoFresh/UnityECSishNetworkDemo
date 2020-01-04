@@ -10,7 +10,7 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
 
     private void Update()
     {
-        foreach (var entity in GetEntities<OnReceiveEvent, Session, SessionTick>())
+        foreach (var entity in GetEntities<OnReceiveEvent, Session>())
         {
             var args = entity.Item1.Args;
             if (args.Length < 1) continue;
@@ -19,14 +19,12 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
             if (command == "update")
             {
                 var session = entity.Item2;
-                var clientTick = entity.Item3;
-                clientTick.lastReceivedTick = Convert.ToInt32(args[1]);
-                clientTick.predictedTick = Convert.ToInt32(args[2]);
-                session.lastReceived = Time.time;
-                session.lastOffsetReceived = Convert.ToSingle(args[3]);
+                var tick = Convert.ToInt32(args[1]);
+                foreach (var clientTick in GetEntities<ClientTick>())
+                    clientTick.Item1.tick = tick;
 
                 var remainingEntityIds = GetCurrentEntityIds();
-                var i = 4;
+                var i = 2;
                 while (i < args.Length)
                 {
                     var entityId = Convert.ToInt32(args[i++]);
@@ -41,16 +39,13 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
                     var movementNetworkSync = clientEntity.GetComponent<MovementNetworkSync>();
                     if (movementNetworkSync)
                     {
-                        var data = new MovementHistory.Data();
-                        data.time = Time.time;
-
                         if (movementNetworkSync.syncPosition)
                         {
                             var position = Vector3.zero;
                             position.x = Convert.ToSingle(args[i++]);
                             position.y = Convert.ToSingle(args[i++]);
                             position.z = Convert.ToSingle(args[i++]);
-                            data.position = position;
+                            clientEntity.transform.position = position;
                         }
                         if (movementNetworkSync.syncRotation)
                         {
@@ -59,7 +54,7 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
                             rotation.y = Convert.ToSingle(args[i++]);
                             rotation.z = Convert.ToSingle(args[i++]);
                             rotation.w = Convert.ToSingle(args[i++]);
-                            data.rotation = rotation;
+                            clientEntity.transform.rotation = rotation;
                         }
                         if (movementNetworkSync.syncScale)
                         {
@@ -67,7 +62,7 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
                             scale.x = Convert.ToSingle(args[i++]);
                             scale.y = Convert.ToSingle(args[i++]);
                             scale.z = Convert.ToSingle(args[i++]);
-                            data.scale = scale;
+                            clientEntity.transform.localScale = scale;
                         }
                         if (movementNetworkSync.syncVelocity)
                         {
@@ -75,7 +70,9 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
                             velocity.x = Convert.ToSingle(args[i++]);
                             velocity.y = Convert.ToSingle(args[i++]);
                             velocity.z = Convert.ToSingle(args[i++]);
-                            data.velocity = velocity;
+
+                            var rigidbody = clientEntity.GetComponent<Rigidbody>();
+                            if (rigidbody) rigidbody.velocity = velocity;
                         }
 
                         if (movementNetworkSync.syncAngularVelocity)
@@ -84,29 +81,9 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
                             angularVelocity.x = Convert.ToSingle(args[i++]);
                             angularVelocity.y = Convert.ToSingle(args[i++]);
                             angularVelocity.z = Convert.ToSingle(args[i++]);
-                            data.angularVelocity = angularVelocity;
-                        }
 
-                        var movementHistory = clientEntity.GetComponent<MovementHistory>();
-                        if (movementHistory)
-                        {
-                            if (movementHistory.movementHistory.Count == 0)
-                            {
-                                if (movementNetworkSync.syncPosition)
-                                    movementHistory.transform.position = data.position;
-                                if (movementNetworkSync.syncRotation)
-                                    movementHistory.transform.rotation = data.rotation;
-                                if (movementNetworkSync.syncScale)
-                                    movementHistory.transform.localScale = data.scale;
-                                if (movementNetworkSync.syncVelocity)
-                                    movementHistory.GetComponent<Rigidbody>().velocity = data.velocity;
-                                if (movementNetworkSync.syncAngularVelocity)
-                                    movementHistory.GetComponent<Rigidbody>().angularVelocity = data.angularVelocity;
-                            }
-                            movementHistory.movementHistory.Add(data);
-
-                            while (movementHistory.movementHistory.Count > movementHistory.maxRecords)
-                                movementHistory.movementHistory.RemoveAt(0);
+                            var rigidbody = clientEntity.GetComponent<Rigidbody>();
+                            if (rigidbody) rigidbody.angularVelocity = angularVelocity;
                         }
                     }
                 }
