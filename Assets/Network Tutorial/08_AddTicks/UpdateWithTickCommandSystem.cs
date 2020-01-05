@@ -21,7 +21,10 @@ public class UpdateWithTickCommandSystem : MonoBehaviourSystem
                 var session = entity.Item2;
                 var tick = Convert.ToInt32(args[1]);
                 foreach (var clientTick in GetEntities<ClientTick>())
-                    clientTick.Item1.tick = tick;
+                {
+                    clientTick.Item1.lastReceivedTick = tick;
+                    clientTick.Item1.lastReceivedTime = Time.time;
+                }
 
                 var remainingEntityIds = GetCurrentEntityIds();
                 var i = 2;

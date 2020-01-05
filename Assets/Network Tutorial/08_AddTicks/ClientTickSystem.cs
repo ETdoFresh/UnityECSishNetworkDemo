@@ -1,18 +1,18 @@
 ﻿using ECSish;
 using UnityEngine;
 
-public class ServerTickSystem : MonoBehaviourSystem
+public class ClientTickSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<ServerTick, TickRate>())
+        foreach (var entity in GetEntities<ClientTick, TickRate>())
         {
-            var serverTick = entity.Item1;
+            var clientTick = entity.Item1;
             var tickRate = entity.Item2.actual;
             entity.Item1.deltaTime += Time.deltaTime;
             while (entity.Item1.deltaTime >= tickRate)
             {
-                serverTick.tick++;
+                clientTick.tick++;
                 entity.Item1.deltaTime -= tickRate;
             }
         }

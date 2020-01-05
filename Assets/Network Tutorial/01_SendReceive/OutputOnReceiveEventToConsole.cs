@@ -30,7 +30,7 @@ public class OutputOnReceiveEventToConsole : MonoBehaviourSystem
                         break;
                     }
             }
-            else
+            else if (!message.Contains("Ping") && !message.Contains("Pong"))
             {
                 textMesh.text += $"{message}\n";
             }
