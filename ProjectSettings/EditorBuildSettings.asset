@@ -101,4 +101,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Network Tutorial/09_TimeSync/9_SplitScreen.unity
     guid: d9790a218753e6048a1a859726aefe04
+  - enabled: 1
+    path: Assets/Network Tutorial/10_ClientPrediction/10_Client.unity
+    guid: 44c841fcb45dc6344aca5bb222d1fa0a
+  - enabled: 1
+    path: Assets/Network Tutorial/10_ClientPrediction/10_Server.unity
+    guid: 00d334a4daa2cbe4d895eff645071dda
+  - enabled: 1
+    path: Assets/Network Tutorial/10_ClientPrediction/10_SplitScreen.unity
+    guid: 4b07e358abed1ea45a67d543c9dcf7f0
   m_configObjects: {}
