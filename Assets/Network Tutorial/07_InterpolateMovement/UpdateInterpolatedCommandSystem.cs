@@ -34,7 +34,7 @@ public class UpdateInterpolatedCommandSystem : MonoBehaviourSystem
                     var movementNetworkSync = clientEntity.GetComponent<MovementNetworkSync>();
                     if (movementNetworkSync)
                     {
-                        var data = new MovementHistory.Data();
+                        var data = new MovementHistoryOld.Data();
                         data.time = Time.time;
 
                         if (movementNetworkSync.syncPosition)
@@ -80,7 +80,7 @@ public class UpdateInterpolatedCommandSystem : MonoBehaviourSystem
                             data.angularVelocity = angularVelocity;
                         }
 
-                        var movementHistory = clientEntity.GetComponent<MovementHistory>();
+                        var movementHistory = clientEntity.GetComponent<MovementHistoryOld>();
                         if (movementHistory)
                         {
                             if (movementHistory.movementHistory.Count == 0)

@@ -102,12 +102,21 @@ EditorBuildSettings:
     path: Assets/Network Tutorial/09_TimeSync/9_SplitScreen.unity
     guid: d9790a218753e6048a1a859726aefe04
   - enabled: 1
-    path: Assets/Network Tutorial/10_ClientPrediction/10_Client.unity
+    path: Assets/Network Tutorial/10_RunInFuture/10_Client.unity
     guid: 44c841fcb45dc6344aca5bb222d1fa0a
   - enabled: 1
-    path: Assets/Network Tutorial/10_ClientPrediction/10_Server.unity
+    path: Assets/Network Tutorial/10_RunInFuture/10_Server.unity
     guid: 00d334a4daa2cbe4d895eff645071dda
   - enabled: 1
-    path: Assets/Network Tutorial/10_ClientPrediction/10_SplitScreen.unity
+    path: Assets/Network Tutorial/10_RunInFuture/10_SplitScreen.unity
     guid: 4b07e358abed1ea45a67d543c9dcf7f0
+  - enabled: 1
+    path: Assets/Network Tutorial/11_Interpolation/11_Client.unity
+    guid: 47268c1e3030d394ea2f5f94694661f5
+  - enabled: 1
+    path: Assets/Network Tutorial/11_Interpolation/11_Server.unity
+    guid: c41cdaa89e7beb54e8e042a7eb89cf32
+  - enabled: 1
+    path: Assets/Network Tutorial/11_Interpolation/11_SplitScreen.unity
+    guid: 04c729680cbdd274f87bb1b06856d899
   m_configObjects: {}

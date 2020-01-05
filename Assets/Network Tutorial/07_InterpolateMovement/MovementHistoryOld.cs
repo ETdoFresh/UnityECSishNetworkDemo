@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementHistory : MonoBehaviourComponentData
+public class MovementHistoryOld : MonoBehaviourComponentData
 {
     public int maxRecords;
     public List<Data> movementHistory = new List<Data>();

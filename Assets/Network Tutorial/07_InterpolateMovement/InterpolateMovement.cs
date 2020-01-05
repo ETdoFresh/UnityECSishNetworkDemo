@@ -6,15 +6,15 @@ public class InterpolateMovement : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<Interpolation, MovementHistory, MovementNetworkSync>())
+        foreach(var entity in GetEntities<Interpolation, MovementHistoryOld, MovementNetworkSync>())
         {
             var interpolationRate = entity.Item1.interpolationRateInSeconds;
             var movementHistory = entity.Item2.movementHistory;
             var network = entity.Item3;
 
             var interpolatedTime = Time.time - interpolationRate;
-            var before = (MovementHistory.Data)null;
-            var after = (MovementHistory.Data)null;
+            var before = (MovementHistoryOld.Data)null;
+            var after = (MovementHistoryOld.Data)null;
             var t = 0f;
 
             if (movementHistory.Count == 0)
