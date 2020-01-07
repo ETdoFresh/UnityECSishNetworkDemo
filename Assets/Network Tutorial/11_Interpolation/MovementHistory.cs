@@ -15,6 +15,12 @@ public class MovementHistory : MonoBehaviourComponentData
             movementHistory.Add(new Data { tick = tick, position = position, rotation = rotation, scale = scale });
     }
 
+    public void Add(Data data)
+    {
+        if (!movementHistory.Where(m => m.tick == data.tick).Any())
+            movementHistory.Add(data);
+    }
+
     public void ClearBeforeTick(int tick)
     {
         for (int i = movementHistory.Count - 1; i >= 0; i--)
