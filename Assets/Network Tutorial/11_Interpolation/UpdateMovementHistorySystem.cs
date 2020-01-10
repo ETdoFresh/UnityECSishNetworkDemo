@@ -111,6 +111,7 @@ public class UpdateMovementHistorySystem : MonoBehaviourSystem
         var prefab = prefabList.prefabs.Where(p => p.name.ToLower() == prefabName.ToLower()).FirstOrDefault();
         var entityGameObject = gameObject.scene.Instantiate(prefab);
         entityGameObject.AddComponent<Interpolation>().interpolationRateInSeconds = 0.2f;
+        entityGameObject.AddComponent<ClientPrediction>();
 
         entityGameObject.layer = LayerMask.NameToLayer("Client 1");
         for (int i = 0; i < entityGameObject.transform.childCount; i++)
@@ -120,8 +121,8 @@ public class UpdateMovementHistorySystem : MonoBehaviourSystem
         entity.entityId = entityId;
 
         // TODO: Figure out a better way to handle dummy client objects
-        Destroy(entity.GetComponent<Rigidbody>());
-        Destroy(entity.GetComponent<Collider>());
+        //Destroy(entity.GetComponent<Rigidbody>());
+        //Destroy(entity.GetComponent<Collider>());
 
         return entity;
     }

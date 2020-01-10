@@ -11,7 +11,7 @@ public class SendMultipleInputs : MonoBehaviourSystem
             var clientTick = entity.Item2.tick;
             var inputBuffer = entity.Item3;
 
-            inputBuffer.AddNewInput(clientTick, input.horizontal, input.vertical, input.jumpPress);
+            inputBuffer.AddNewInput(clientTick, input.horizontal, input.vertical, input.jumpPressed);
         }
 
         foreach (var entity in GetEntities<ClientInputRate, ClientTick, InputBuffer>())

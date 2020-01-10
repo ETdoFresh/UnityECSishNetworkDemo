@@ -119,4 +119,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Network Tutorial/11_Interpolation/11_SplitScreen.unity
     guid: 04c729680cbdd274f87bb1b06856d899
+  - enabled: 1
+    path: Assets/Network Tutorial/12_Prediction/12_Client.unity
+    guid: a7c113e685f69d14a971012463273fab
+  - enabled: 1
+    path: Assets/Network Tutorial/12_Prediction/12_Server.unity
+    guid: ea613be1fcb02e44496ba7f314beb1a7
+  - enabled: 1
+    path: Assets/Network Tutorial/12_Prediction/12_SplitScreen.unity
+    guid: b51f283caf23a4a4d958f5c2b5cca72a
   m_configObjects: {}

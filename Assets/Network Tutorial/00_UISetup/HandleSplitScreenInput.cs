@@ -16,7 +16,7 @@ public class HandleSplitScreenInput : MonoBehaviourSystem
                 {
                     input.horizontal = Input.GetAxisRaw("Horizontal");
                     input.vertical = Input.GetAxisRaw("Vertical");
-                    input.jumpPress = Input.GetButtonDown("Jump");
+                    input.jumpPressed = Input.GetButtonDown("Jump");
                     input.jumpHold = Input.GetButton("Jump");
                     input.jumpRelease = Input.GetButtonUp("Jump");
                 }
@@ -24,7 +24,7 @@ public class HandleSplitScreenInput : MonoBehaviourSystem
                 {
                     input.horizontal = 0;
                     input.vertical = 0;
-                    input.jumpPress = false;
+                    input.jumpPressed = false;
                     input.jumpHold = false;
                     input.jumpRelease = false;
                 }

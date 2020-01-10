@@ -17,7 +17,7 @@ public class SendInputWithTick : MonoBehaviourSystem
                 if (Time.time < nextSend) continue;
 
                 entity.Item1.lastSent = lastSent = Time.time;
-                var message = $"Input {clientTick.tick} {input.horizontal} {input.vertical} {input.jumpPress}";
+                var message = $"Input {clientTick.tick} {input.horizontal} {input.vertical} {input.jumpPressed}";
                 ECSEvent.Create<OnSendEvent>(session, message);
             }
     }

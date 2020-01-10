@@ -4,7 +4,7 @@ public class SplitScreenInput : MonoBehaviourComponentData
 {
     public float horizontal;
     public float vertical;
-    public bool jumpPress;
+    public bool jumpPressed;
     public bool jumpHold;
     public bool jumpRelease;
 }
