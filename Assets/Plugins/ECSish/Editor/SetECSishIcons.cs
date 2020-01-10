@@ -14,7 +14,7 @@ public class SetECSishIcons : AssetPostprocessor
         var importedScripts = importedAssets.Select(assetPath => AssetDatabase.LoadAssetAtPath<MonoScript>(assetPath)).Where(asset => asset);
 
         var componentDataIcon = Resources.Load<Texture2D>("ECSishComponentData");
-        foreach (var script in importedScripts.Where(s => s.GetClass().IsSubclassOf(typeof(MonoBehaviourComponentData))))
+        foreach (var script in importedScripts.Where(s => s.GetClass() != null && s.GetClass().IsSubclassOf(typeof(MonoBehaviourComponentData))))
         {
             var icon = GetIconForObject.Invoke(null, new[] { script });
             if (icon == null || !icon.Equals(componentDataIcon))
