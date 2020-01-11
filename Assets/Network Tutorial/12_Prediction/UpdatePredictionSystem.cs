@@ -1,10 +1,11 @@
 ﻿using ECSish;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UpdateMovementHistorySystem : MonoBehaviourSystem
+public class UpdatePredictionSystem : MonoBehaviourSystem
 {
     private List<EntityId> remainingEntityIds = new List<EntityId>();
 
@@ -110,7 +111,8 @@ public class UpdateMovementHistorySystem : MonoBehaviourSystem
         var prefabList = GetEntity<PrefabList>().Item1.prefabList;
         var prefab = prefabList.prefabs.Where(p => p.name.ToLower() == prefabName.ToLower()).FirstOrDefault();
         var entityGameObject = gameObject.scene.Instantiate(prefab);
-        entityGameObject.AddComponent<Interpolation>().interpolationRateInSeconds = 0.2f;
+        entityGameObject.AddComponent<ClientPrediction>();
+        entityGameObject.AddComponent<ClientMovementHistory>();
 
         entityGameObject.layer = LayerMask.NameToLayer("Client 1");
         for (int i = 0; i < entityGameObject.transform.childCount; i++)
@@ -118,10 +120,6 @@ public class UpdateMovementHistorySystem : MonoBehaviourSystem
 
         var entity = entityGameObject.GetComponent<EntityId>();
         entity.entityId = entityId;
-
-        // TODO: Figure out a better way to handle dummy client objects
-        Destroy(entity.GetComponent<Rigidbody>());
-        Destroy(entity.GetComponent<Collider>());
 
         return entity;
     }

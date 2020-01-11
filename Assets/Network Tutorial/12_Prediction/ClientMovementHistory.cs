@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static MovementHistory;
 
-public class MovementHistory : MonoBehaviourComponentData
+public class ClientMovementHistory : MonoBehaviourComponentData
 {
-    public int maxRecords;
+    public int maxRecords = 100;
     public List<Data> movementHistory = new List<Data>();
 
     public void Add(int tick, Vector3 position, Quaternion rotation, Vector3 scale)
@@ -28,14 +29,10 @@ public class MovementHistory : MonoBehaviourComponentData
                 movementHistory.RemoveAt(i);
     }
 
-    [Serializable]
-    public class Data
+    public void ClearAfterTick(int tick)
     {
-        public int tick;
-        public Vector3 position;
-        public Quaternion rotation = Quaternion.identity;
-        public Vector3 scale = Vector3.one;
-        public Vector3 velocity;
-        public Vector3 angularVelocity;
+        for (int i = movementHistory.Count - 1; i >= 0; i--)
+            if (movementHistory[i].tick > tick)
+                movementHistory.RemoveAt(i);
     }
 }
