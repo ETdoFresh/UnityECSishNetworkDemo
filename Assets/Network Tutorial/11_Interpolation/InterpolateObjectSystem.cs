@@ -12,7 +12,8 @@ public class InterpolateObjectSystem : MonoBehaviourSystem
             {
                 var tick = interpolationEntity.Item1.interpolatedTick;
                 var sync = entity.Item1;
-                var history = entity.Item2.movementHistory;
+                var movementHistory = entity.Item2;
+                var history = movementHistory.movementHistory;
 
                 if (history.Count > 0)
                 {
@@ -20,7 +21,7 @@ public class InterpolateObjectSystem : MonoBehaviourSystem
                     if (tick > history[history.Count - 1].tick)
                         data = history[history.Count - 1];
                     else if (tick > history[0].tick)
-                        data = GetMovementData(history, tick);
+                        data = GetMovementData(movementHistory, tick);
 
                     if (sync.syncPosition) sync.transform.position = data.position;
                     if (sync.syncRotation) sync.transform.rotation = data.rotation;
@@ -36,9 +37,12 @@ public class InterpolateObjectSystem : MonoBehaviourSystem
             }
     }
 
-    private MovementHistory.Data GetMovementData(List<MovementHistory.Data> history, float tick)
+    private MovementHistory.Data GetMovementData(MovementHistory movementHistory, float tick)
     {
+        var history = movementHistory.movementHistory;
         var before = history.Where(m => m.tick <= tick).Last();
+        if (before != null) movementHistory.ClearBeforeTick(before.tick);
+
         var after = history.Where(m => m.tick >= tick).First();
         var delta = after.tick - before.tick;
         if (delta == 0) return before;

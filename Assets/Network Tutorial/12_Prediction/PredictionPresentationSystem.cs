@@ -5,15 +5,12 @@ public class PredictionPresentationSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach(var entity in GetEntities<ClientPrediction, Movement>())
+        foreach (var entity in GetEntities<ClientPrediction, Movement>())
         {
             var prediction = entity.Item1.transform;
-            
-            var force = entity.Item2.force; // Do mass calculation if rigidbody exists
-            //var positionChange = currentVelocity * Time.deltaTime + 0.5f * force / mass * Time.deltaTime * Time.deltaTime;
-            var estimatedPositionChange = force * Time.deltaTime * 2;
-            var closeSnapDistance = 0.25f;
-            var farSnapDistance = 5;
+            var tweenSpeed = entity.Item1.tweenSpeed;
+            var closeSnapDistance = entity.Item1.closeSnapDistance;
+            var farSnapDistance = entity.Item1.farSnapDistance;
 
             var presentation = prediction.GetComponentInChildren<ClientPresentation>();
             if (presentation)
@@ -23,53 +20,63 @@ public class PredictionPresentationSystem : MonoBehaviourSystem
                 if (distance < closeSnapDistance || distance > farSnapDistance)
                     presentationTransform.position = prediction.position;
                 else
-                    presentationTransform.position = Vector3.Lerp(presentation.previousPosition, prediction.position, estimatedPositionChange);
+                    presentationTransform.position = Vector3.Lerp(presentation.previousPosition, prediction.position, tweenSpeed);
 
                 distance = Vector3.Distance(prediction.rotation.eulerAngles, presentation.previousRotation.eulerAngles);
                 if (distance < closeSnapDistance || distance > farSnapDistance)
                     presentationTransform.rotation = prediction.rotation;
                 else
-                    presentationTransform.rotation = Quaternion.Slerp(presentation.previousRotation, prediction.rotation, estimatedPositionChange);
+                    presentationTransform.rotation = Quaternion.Slerp(presentation.previousRotation, prediction.rotation, tweenSpeed);
 
                 distance = Vector3.Distance(prediction.localScale, presentation.previousLocalScale);
                 if (distance < closeSnapDistance || distance > farSnapDistance)
                     presentationTransform.localScale = prediction.localScale;
                 else
-                    presentationTransform.localScale = Vector3.Lerp(presentation.previousLocalScale, prediction.localScale, estimatedPositionChange);
+                    presentationTransform.localScale = Vector3.Lerp(presentation.previousLocalScale, prediction.localScale, tweenSpeed);
 
                 presentation.previousPosition = presentationTransform.position;
                 presentation.previousRotation = presentationTransform.rotation;
                 presentation.previousLocalScale = presentationTransform.localScale;
             }
         }
-    }
 
-    private void FixedUpdate()
-    {
-        foreach(var splitScreenInputEntity in GetEntities<SplitScreenInput>())
-        foreach (var entity in GetEntities<ClientPrediction, Movement, RigidbodyComponent>())
-        {
-            var splitScreenInput = splitScreenInputEntity.Item1;
-            var movement = entity.Item2;
-            var rigidbody = entity.Item3.rigidbody;
+        foreach (var entity in GetEntities<ClientPrediction>())
+            if (entity.Item1.nextUpdate == 0) entity.Item1.nextUpdate = Time.time;
 
-            var forward = Camera.main.transform.forward;
-            var right = Camera.main.transform.right;
-            forward.y = 0f;
-            right.y = 0f;
-            forward.Normalize();
-            right.Normalize();
+        foreach (var sessionEntity in GetEntities<Session>())
+            foreach (var splitScreenInputEntity in GetEntities<SplitScreenInput>())
+                foreach (var entity in GetEntities<ClientPrediction, Movement, RigidbodyComponent>())
+                {
+                    var sessionId = sessionEntity.Item1.id;
+                    var splitScreenInput = splitScreenInputEntity.Item1;
+                    var clientPrediction = entity.Item1;
+                    var movement = entity.Item2;
+                    var rigidbody = entity.Item3.rigidbody;
 
-            var input = forward * splitScreenInput.vertical;
-            input += right * splitScreenInput.horizontal;
-            var jump = splitScreenInput.jumpPressed;
+                    if (clientPrediction.sessionId != sessionId)
+                        continue;
 
-            rigidbody.AddForce(input * movement.force);
-            if (jump)
-                rigidbody.AddForce(Vector3.up * movement.force, ForceMode.Impulse);
+                    while (Time.time >= clientPrediction.nextUpdate)
+                    {
+                        clientPrediction.nextUpdate += Time.fixedDeltaTime;
+                        var forward = Camera.main.transform.forward;
+                        var right = Camera.main.transform.right;
+                        forward.y = 0f;
+                        right.y = 0f;
+                        forward.Normalize();
+                        right.Normalize();
 
-            // TODO: Figure out how to ignore jump again.. for now, just unset it...
-            splitScreenInput.jumpPressed = false;
-        }
+                        var input = forward * splitScreenInput.vertical;
+                        input += right * splitScreenInput.horizontal;
+                        var jump = splitScreenInput.jumpPressed;
+
+                        rigidbody.AddForce(input * movement.force);
+                        if (jump)
+                            rigidbody.AddForce(Vector3.up * movement.force, ForceMode.Impulse);
+
+                        // TODO: Figure out how to ignore jump again.. for now, just unset it...
+                        splitScreenInput.jumpPressed = false;
+                    }
+                }
     }
 }

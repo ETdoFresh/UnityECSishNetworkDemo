@@ -7,6 +7,7 @@ using static MovementHistory;
 
 public class ClientMovementHistory : MonoBehaviourComponentData
 {
+    public float acceptableError = 0.1f;
     public int maxRecords = 100;
     public List<Data> movementHistory = new List<Data>();
 
@@ -20,6 +21,9 @@ public class ClientMovementHistory : MonoBehaviourComponentData
     {
         if (!movementHistory.Where(m => m.tick == data.tick).Any())
             movementHistory.Add(data);
+
+        if (movementHistory.Count > maxRecords)
+            throw new OverflowException("Exceeded maxRecords in ClientMovementHistory");
     }
 
     public void ClearBeforeTick(int tick)

@@ -41,8 +41,9 @@ public class AddToClientMovementHistory : MonoBehaviourSystem
             if (clientMovement == null)
                 continue;
 
+            var acceptableError = entity.Item1.acceptableError;
             var error = Vector3.Distance(latestReceived.position, clientMovement.position);
-            if (error > 0.5f)
+            if (error > acceptableError)
             {
                 recompute = true;
                 break;

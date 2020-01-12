@@ -168,6 +168,8 @@ MonoBehaviour:
   scenes:
   - 12_Server
   - 12_Client
+  - 12_Client
+  - 12_Client
 --- !u!114 &552726446
 MonoBehaviour:
   m_ObjectHideFlags: 0

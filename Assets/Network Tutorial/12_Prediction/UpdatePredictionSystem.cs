@@ -81,6 +81,10 @@ public class UpdatePredictionSystem : MonoBehaviourSystem
                         }
                         movementHistory.Add(data);
                     }
+
+                    var clientPrediction = clientEntity.GetComponent<ClientPrediction>();
+                    if (clientPrediction)
+                        clientPrediction.sessionId = Convert.ToInt32(args[i++]);
                 }
 
                 foreach (var remainingEntity in remainingEntityIds)

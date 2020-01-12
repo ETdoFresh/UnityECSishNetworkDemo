@@ -4,8 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class PhysicsSimulationSystem : MonoBehaviourSystem
 {
-    private void FixedUpdate()
+    private float nextUpdate;
+
+    private void OnEnable()
     {
-        gameObject.scene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
+        nextUpdate = Time.time;
+    }
+
+    private void Update()
+    {
+        while (Time.time > nextUpdate)
+        {
+            nextUpdate += Time.fixedDeltaTime;
+            gameObject.scene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
+        }
     }
 }
