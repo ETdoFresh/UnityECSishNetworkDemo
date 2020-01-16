@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1905444022}
+  presentation: {fileID: 0}
 --- !u!1001 &2995326077578229093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,6 +223,16 @@ PrefabInstance:
         type: 3}
       propertyPath: prefabName
       value: PlayerCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573847427421351001, guid: 541a52229eee68745a9d9991fe0d7465,
+        type: 3}
+      propertyPath: syncVelocity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573847427421351001, guid: 541a52229eee68745a9d9991fe0d7465,
+        type: 3}
+      propertyPath: syncAngularVelocity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8658324759201754537, guid: 541a52229eee68745a9d9991fe0d7465,
         type: 3}

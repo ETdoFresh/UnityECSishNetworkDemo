@@ -53,9 +53,10 @@ public class AddToClientMovementHistory : MonoBehaviourSystem
         if (recompute)
         {
             Debug.Log("Recompute!");
-            foreach (var clientTickEntity in GetEntities<ClientTick>())
+            foreach (var clientTickEntity in GetEntities<ClientTick, InputBuffer>())
             {
                 var clientTick = clientTickEntity.Item1.tick;
+                var inputBuffer = clientTickEntity.Item2.inputs;
                 var latestReceived = clientTickEntity.Item1.lastReceivedTick;
                 foreach (var entity in GetEntities<ClientMovementHistory, MovementHistory>())
                 {
@@ -80,21 +81,52 @@ public class AddToClientMovementHistory : MonoBehaviourSystem
 
                 for (var tick = latestReceived + 1; tick <= clientTick; tick++)
                 {
+                    var input = inputBuffer.Where(i => i.tick == tick).FirstOrDefault();
+                    if (input != null)
+                        foreach (var sessionEntity in GetEntities<Session>())
+                            foreach (var entity in GetEntities<ClientPrediction, Movement, RigidbodyComponent>())
+                            {
+                                var sessionId = sessionEntity.Item1.id;
+                                var clientPrediction = entity.Item1;
+                                var movement = entity.Item2;
+                                var rigidbody = entity.Item3.rigidbody;
+
+                                if (clientPrediction.sessionId != sessionId)
+                                    continue;
+
+                                var forward = Camera.main.transform.forward;
+                                var right = Camera.main.transform.right;
+                                forward.y = 0f;
+                                right.y = 0f;
+                                forward.Normalize();
+                                right.Normalize();
+
+                                var inputForce = forward * input.vertical;
+                                inputForce += right * input.horizontal;
+                                var jump = input.jumpPressed;
+
+                                rigidbody.AddForce(inputForce * movement.force);
+                                if (jump)
+                                    rigidbody.AddForce(Vector3.up * movement.force, ForceMode.Impulse);
+                            }
+
                     gameObject.scene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
-                    foreach (var entity in GetEntities<ClientMovementHistory>())
+
+                    foreach (var entity in GetEntities<ClientMovementHistory, RigidbodyComponent>())
                     {
                         var movementHistory = entity.Item1;
                         var current = entity.Item1.transform;
+                        var rigidbody = entity.Item2.rigidbody;
                         var data = new MovementHistory.Data();
                         data.tick = tick;
                         data.position = current.position;
                         data.rotation = current.rotation;
                         data.scale = current.localScale;
 
-                        if (current.GetComponent<Rigidbody>())
+                        if (rigidbody)
                         {
-                            data.velocity = current.GetComponent<Rigidbody>().velocity;
-                            data.angularVelocity = current.GetComponent<Rigidbody>().angularVelocity;
+                            data.velocity = rigidbody.velocity;
+                            data.angularVelocity = rigidbody.angularVelocity;
                         }
 
                         movementHistory.Add(data);
