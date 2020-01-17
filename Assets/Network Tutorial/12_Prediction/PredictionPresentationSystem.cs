@@ -6,45 +6,51 @@ public class PredictionPresentationSystem : MonoBehaviourSystem
 {
     private void Update()
     {
-        foreach (var entity in GetEntities<ClientPresenter, Movement>())
-        {
-            var presenter = entity.Item1;
-            if (!presenter.presentation)
+        foreach (var sessionEntity in GetEntities<Session>())
+            foreach (var entity in GetEntities<ClientPrediction, Movement>())
             {
-                var newEntity = Instantiate(presenter.prefab);
-                SceneManager.MoveGameObjectToScene(newEntity, presenter.gameObject.scene);
-                presenter.prefab.SetActive(false);
-                presenter.presentation = newEntity.AddComponent<ClientPresentation>();
-                presenter.presentation.target = presenter.transform;
-            }
-            
-            if (presenter.presentation)
-            {
-                var prediction = presenter.transform;
-                var presentation = presenter.presentation.transform;
-                var closeSnapDistance = presenter.presentation.closeSnapDistance;
-                var farSnapDistance = presenter.presentation.farSnapDistance;
-                var tweenSpeed = presenter.presentation.tweenSpeed;
+                var sessionId = sessionEntity.Item1.id;
+                var clientPrediction = entity.Item1;
                 
-                //var distance = Vector3.Distance(prediction.position, presentation.position);
-                //if (distance < closeSnapDistance || distance > farSnapDistance)
-                //    presentation.position = prediction.position;
-                //else
-                    presentation.position = Vector3.Lerp(presentation.position, prediction.position, tweenSpeed);
+                if (clientPrediction.sessionId != sessionId)
+                    continue;
 
-                //distance = Vector3.Distance(prediction.rotation.eulerAngles, presentation.rotation.eulerAngles);
-                //if (distance < closeSnapDistance || distance > farSnapDistance)
-                //    presentation.rotation = prediction.rotation;
-                //else
+                if (!clientPrediction.presentation)
+                {
+                    var newEntity = Instantiate(clientPrediction.prefab);
+                    SceneManager.MoveGameObjectToScene(newEntity, clientPrediction.gameObject.scene);
+                    clientPrediction.prefab.SetActive(false);
+                    clientPrediction.presentation = newEntity.AddComponent<ClientPresentation>();
+                    clientPrediction.presentation.target = clientPrediction.transform;
+                }
+
+                if (clientPrediction.presentation)
+                {
+                    var prediction = clientPrediction.transform;
+                    var presentation = clientPrediction.presentation.transform;
+                    var closeSnapDistance = clientPrediction.closeSnapDistance;
+                    var farSnapDistance = clientPrediction.farSnapDistance;
+                    var tweenSpeed = clientPrediction.tweenSpeed;
+
+                    var distance = Vector3.Distance(prediction.position, presentation.position);
+                    if (distance < closeSnapDistance || distance > farSnapDistance)
+                        presentation.position = prediction.position;
+                    else
+                        presentation.position = Vector3.Lerp(presentation.position, prediction.position, tweenSpeed);
+
+                    //distance = Vector3.Distance(prediction.rotation.eulerAngles, presentation.rotation.eulerAngles) * 10;
+                    //if (distance < closeSnapDistance || distance > farSnapDistance)
+                    //    presentation.rotation = prediction.rotation;
+                    //else
                     presentation.rotation = Quaternion.Slerp(presentation.rotation, prediction.rotation, tweenSpeed);
 
-                //distance = Vector3.Distance(prediction.localScale, presentation.localScale);
-                //if (distance < closeSnapDistance || distance > farSnapDistance)
-                //    presentation.localScale = prediction.localScale;
-                //else
-                    presentation.localScale = Vector3.Lerp(presentation.localScale, prediction.localScale, tweenSpeed);
+                    distance = Vector3.Distance(prediction.localScale, presentation.localScale);
+                    if (distance < closeSnapDistance || distance > farSnapDistance)
+                        presentation.localScale = prediction.localScale;
+                    else
+                        presentation.localScale = Vector3.Lerp(presentation.localScale, prediction.localScale, tweenSpeed);
+                }
             }
-        }
 
         foreach (var entity in GetEntities<ClientPrediction>())
             if (entity.Item1.nextUpdate == 0) entity.Item1.nextUpdate = Time.time;

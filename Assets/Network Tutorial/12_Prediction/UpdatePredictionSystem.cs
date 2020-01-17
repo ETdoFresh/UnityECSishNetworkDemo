@@ -115,7 +115,6 @@ public class UpdatePredictionSystem : MonoBehaviourSystem
         var prefabList = GetEntity<PrefabList>().Item1.prefabList;
         var prefab = prefabList.prefabs.Where(p => p.name.ToLower() == prefabName.ToLower()).FirstOrDefault();
         var entityGameObject = gameObject.scene.Instantiate(prefab);
-        entityGameObject.AddComponent<ClientPrediction>();
         entityGameObject.AddComponent<ClientMovementHistory>();
 
         entityGameObject.layer = LayerMask.NameToLayer("Client 1");
