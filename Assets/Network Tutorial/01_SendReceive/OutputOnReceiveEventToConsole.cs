@@ -12,7 +12,7 @@ public class OutputOnReceiveEventToConsole : MonoBehaviourSystem
 
             var textMesh = uiConsole.Item1.textMesh;
 
-            if (message.Contains("Input "))
+            if (message.Contains("Input"))
             {
                 foreach (var debug in GetEntities<DebugShowOnConsole>())
                     if (debug.Item1.showInput)
@@ -21,7 +21,7 @@ public class OutputOnReceiveEventToConsole : MonoBehaviourSystem
                         break;
                     }
             }
-            else if (message.Contains("Update "))
+            else if (message.Contains("Update"))
             {
                 foreach (var debug in GetEntities<DebugShowOnConsole>())
                     if (debug.Item1.showUpdate)
