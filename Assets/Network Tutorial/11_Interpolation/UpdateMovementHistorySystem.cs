@@ -110,7 +110,7 @@ public class UpdateMovementHistorySystem : MonoBehaviourSystem
         var prefabList = GetEntity<PrefabList>().Item1.prefabList;
         var prefab = prefabList.prefabs.Where(p => p.name.ToLower() == prefabName.ToLower()).FirstOrDefault();
         var entityGameObject = gameObject.scene.Instantiate(prefab);
-        entityGameObject.AddComponent<Interpolation>().interpolationRateInSeconds = 0.2f;
+        entityGameObject.AddComponent<Interpolation>();
 
         entityGameObject.layer = LayerMask.NameToLayer("Client 1");
         for (int i = 0; i < entityGameObject.transform.childCount; i++)

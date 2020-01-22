@@ -36,7 +36,7 @@ public class AddToClientMovementHistory : MonoBehaviourSystem
             var clientMovementHistory = entity.Item1.movementHistory;
             var server = entity.Item2;
             var latestReceived = server.movementHistory[server.movementHistory.Count - 1];
-            server.ClearBeforeTick(latestReceived.tick);
+            server.ClearBeforeTick(latestReceived.tick-30);
             var clientMovement = clientMovementHistory.Where(d => d.tick == latestReceived.tick).FirstOrDefault();
             if (clientMovement == null)
                 continue;

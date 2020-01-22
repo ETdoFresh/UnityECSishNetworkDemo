@@ -82,9 +82,24 @@ public class UpdatePredictionSystem : MonoBehaviourSystem
                         movementHistory.Add(data);
                     }
 
+                    var clientPredictionSessionId = Convert.ToInt32(args[i++]);
                     var clientPrediction = clientEntity.GetComponent<ClientPrediction>();
+                    var interpolation = clientEntity.GetComponent<Interpolation>();
                     if (clientPrediction)
-                        clientPrediction.sessionId = Convert.ToInt32(args[i++]);
+                        clientPrediction.sessionId = clientPredictionSessionId;
+
+                    if (clientPrediction)
+                        clientPrediction.enabled = clientPredictionSessionId == session.id;
+
+                    if (interpolation)
+                    {
+                        interpolation.enabled = clientPredictionSessionId != session.id;
+                        if (interpolation.enabled)
+                        {
+                            //Destroy(interpolation.GetComponent<Collider>());
+                            //Destroy(interpolation.GetComponent<Rigidbody>());
+                        }
+                    }
                 }
 
                 foreach (var remainingEntity in remainingEntityIds)
@@ -116,6 +131,7 @@ public class UpdatePredictionSystem : MonoBehaviourSystem
         var prefab = prefabList.prefabs.Where(p => p.name.ToLower() == prefabName.ToLower()).FirstOrDefault();
         var entityGameObject = gameObject.scene.Instantiate(prefab);
         entityGameObject.AddComponent<ClientMovementHistory>();
+        entityGameObject.AddComponent<Interpolation>();
 
         entityGameObject.layer = LayerMask.NameToLayer("Client 1");
         for (int i = 0; i < entityGameObject.transform.childCount; i++)

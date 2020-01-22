@@ -8,7 +8,7 @@ public class InterpolateObjectSystem : MonoBehaviourSystem
     private void Update()
     {
         foreach (var interpolationEntity in GetEntities<InterpolationTick>())
-            foreach (var entity in GetEntities<MovementNetworkSync, MovementHistory>())
+            foreach (var entity in GetEntities<MovementNetworkSync, MovementHistory, Interpolation>())
             {
                 var tick = interpolationEntity.Item1.interpolatedTick;
                 var sync = entity.Item1;
