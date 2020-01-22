@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   vertical: 0
-  jumpPress: 0
+  jumpPressed: 0
   jumpHold: 0
   jumpRelease: 0
 --- !u!114 &1404024803
@@ -1508,6 +1508,7 @@ GameObject:
   - component: {fileID: 1813715284}
   - component: {fileID: 1813715283}
   - component: {fileID: 1813715286}
+  - component: {fileID: 1813715287}
   m_Layer: 0
   m_Name: SplitScreenInput
   m_TagString: Untagged
@@ -1529,7 +1530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   vertical: 0
-  jumpPress: 0
+  jumpPressed: 0
   jumpHold: 0
   jumpRelease: 0
 --- !u!114 &1813715284
@@ -1573,6 +1574,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastSent: 0
   sendRateInSeconds: 0.1
+--- !u!114 &1813715287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813715282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1242f6213340110498857dc9c1bdf426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1843551353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1660,7 +1673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b9068188cbc6540b94e9f32ef0df16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastUpdate: 0
+  lastUpdateSent: 0
   updateRateInSeconds: 0.1
 --- !u!1 &2062765704
 GameObject:

@@ -19,6 +19,14 @@ public class HandleSplitScreenInput : MonoBehaviourSystem
                     input.jumpPressed = Input.GetButtonDown("Jump");
                     input.jumpHold = Input.GetButton("Jump");
                     input.jumpRelease = Input.GetButtonUp("Jump");
+
+                    if (input.jumpPressed)
+                    {
+                        foreach (var jumpQueue in GetEntities<ClientJumpQueue>())
+                            jumpQueue.Item1.jumpPresses.Enqueue(true);
+                        foreach (var jumpQueue in GetEntities<ClientPrediction>())
+                            jumpQueue.Item1.jumpPresses.Enqueue(true);
+                    }
                 }
                 else
                 {

@@ -1,17 +1,32 @@
 ﻿using ECSish;
+using System.Linq;
 using UnityEngine;
 
 public class SendMultipleInputs : MonoBehaviourSystem
 {
     private void Update()
     {
+        var clientPrediction = GetEntity<ClientPrediction>();
+
         foreach (var entity in GetEntities<SplitScreenInput, ClientTick, InputBuffer>())
         {
             var input = entity.Item1;
             var clientTick = entity.Item2.tick;
             var inputBuffer = entity.Item3;
 
-            inputBuffer.AddNewInput(clientTick, input.horizontal, input.vertical, input.jumpPressed);
+            var jump = input.jumpPressed;
+            if (clientPrediction != null && clientPrediction.Item1.jumpPresses.Count > 0)
+                jump = clientPrediction.Item1.jumpPresses.Dequeue();
+
+            if (inputBuffer.inputs.Count > 0)
+            {
+                while (inputBuffer.inputs.Last().tick + 1 < clientTick)
+                    inputBuffer.AddNewInput(inputBuffer.inputs.Last().tick + 1, input.horizontal, input.vertical, false);
+
+                inputBuffer.AddNewInput(clientTick, input.horizontal, input.vertical, jump);
+            }
+            else
+                inputBuffer.AddNewInput(clientTick, input.horizontal, input.vertical, jump);
         }
 
         foreach (var entity in GetEntities<ClientInputRate, ClientTick, InputBuffer>())

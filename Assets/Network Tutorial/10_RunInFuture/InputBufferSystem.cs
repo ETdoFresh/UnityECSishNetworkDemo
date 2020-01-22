@@ -1,6 +1,7 @@
 ﻿using ECSish;
 using System;
 using System.Linq;
+using UnityEngine;
 
 public class InputBufferSystem : MonoBehaviourSystem
 {
@@ -40,7 +41,7 @@ public class InputBufferSystem : MonoBehaviourSystem
 
                 var input = inputBuffer.inputs.Where(i => i.tick == serverTick).FirstOrDefault();
                 if (input != null)
-                    foreach(var sessionInputEntity in GetEntities<SessionInput>())
+                    foreach (var sessionInputEntity in GetEntities<SessionInput>())
                     {
                         var sessionInput = sessionInputEntity.Item1;
                         if (sessionInput.sessionId == session.id)
@@ -50,6 +51,8 @@ public class InputBufferSystem : MonoBehaviourSystem
                             sessionInput.jumpPressed = input.jumpPressed;
                         }
                     }
+                else
+                    Debug.Log($"Session Id {session.id} did not have input tick {serverTick}");
 
                 inputBuffer.RemoveTimesOnOrBeforeTick(serverTick);
             }

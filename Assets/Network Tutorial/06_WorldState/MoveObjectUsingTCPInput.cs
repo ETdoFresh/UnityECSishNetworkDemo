@@ -25,9 +25,6 @@ public class MoveObjectUsingTCPInput : MonoBehaviourSystem
             rigidbody.AddForce(input * movement.force);
             if (jump)
                 rigidbody.AddForce(Vector3.up * movement.force, ForceMode.Impulse);
-
-            // TODO: Figure out how to ignore jump again.. for now, just unset it...
-            tcpInput.jumpPressed = false;
         }
     }
 }

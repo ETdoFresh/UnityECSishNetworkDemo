@@ -1,4 +1,5 @@
 ﻿using ECSish;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ClientPrediction : MonoBehaviourComponentData 
@@ -10,4 +11,5 @@ public class ClientPrediction : MonoBehaviourComponentData
     public float tweenSpeed = 0.1f;
     public int sessionId;
     public float nextUpdate;
+    public Queue<bool> jumpPresses = new Queue<bool>();
 }

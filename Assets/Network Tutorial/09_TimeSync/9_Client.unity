@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   vertical: 0
-  jumpPress: 0
+  jumpPressed: 0
   jumpHold: 0
   jumpRelease: 0
 --- !u!1 &1808038159
@@ -1765,6 +1765,7 @@ GameObject:
   - component: {fileID: 1995369389}
   - component: {fileID: 1995369396}
   - component: {fileID: 1995369395}
+  - component: {fileID: 1995369393}
   m_Layer: 0
   m_Name: ClientInput
   m_TagString: Untagged
@@ -1800,7 +1801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   vertical: 0
-  jumpPress: 0
+  jumpPressed: 0
   jumpHold: 0
   jumpRelease: 0
 --- !u!114 &1995369391
@@ -1830,6 +1831,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1995369393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995369388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1242f6213340110498857dc9c1bdf426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1995369395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,7 +1855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46ab3ab218c1ac42bda550f157baf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickRate: 0.02
+  target: 0.02
+  actual: 0.02
 --- !u!114 &1995369396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,6 +1870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tick: 0
+  deltaTime: 0
   lastReceivedTick: 0
   lastReceivedTime: 0
   predictedTick: 0
