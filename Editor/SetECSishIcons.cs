@@ -25,7 +25,7 @@ public class SetECSishIcons : AssetPostprocessor
         }
 
         var systemIcon = Resources.Load<Texture2D>("ECSishSystem");
-        foreach (var script in importedScripts.Where(s => s.GetClass() != null && s.GetClass().IsSubclassOf(typeof(MonoBehaviourSystem))))
+        foreach (var script in importedScripts.Where(s => s && s.GetClass() != null && s.GetClass().IsSubclassOf(typeof(MonoBehaviourSystem))))
         {
             var icon = GetIconForObject.Invoke(null, new[] { script });
             if (icon == null || !icon.Equals(systemIcon))
