@@ -6,19 +6,15 @@ using UnityEngine;
 
 public class SetECSishIcons : AssetPostprocessor
 {
-	private static bool firstCall = true;
     private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
-		if (!firstCall) return;
-		firstCall = false;
-		
         MethodInfo GetIconForObject = typeof(EditorGUIUtility).GetMethod("GetIconForObject", BindingFlags.Static | BindingFlags.NonPublic);
         MethodInfo SetIconForObject = typeof(EditorGUIUtility).GetMethod("SetIconForObject", BindingFlags.Static | BindingFlags.NonPublic);
         MethodInfo CopyMonoScriptIconToImporters = typeof(MonoImporter).GetMethod("CopyMonoScriptIconToImporters", BindingFlags.Static | BindingFlags.NonPublic);
         var importedScripts = importedAssets.Select(assetPath => AssetDatabase.LoadAssetAtPath<MonoScript>(assetPath)).Where(asset => asset);
 
         var componentDataIcon = Resources.Load<Texture2D>("ECSishComponentData");
-        foreach (var script in importedScripts.Where(s => s.GetClass().IsSubclassOf(typeof(MonoBehaviourComponentData))))
+        foreach (var script in importedScripts.Where(s => s.GetClass() != null && s.GetClass().IsSubclassOf(typeof(MonoBehaviourComponentData))))
         {
             var icon = GetIconForObject.Invoke(null, new[] { script });
             if (icon == null || !icon.Equals(componentDataIcon))
@@ -29,7 +25,7 @@ public class SetECSishIcons : AssetPostprocessor
         }
 
         var systemIcon = Resources.Load<Texture2D>("ECSishSystem");
-        foreach (var script in importedScripts.Where(s => s.GetClass().IsSubclassOf(typeof(MonoBehaviourSystem))))
+        foreach (var script in importedScripts.Where(s => s.GetClass() != null && s.GetClass().IsSubclassOf(typeof(MonoBehaviourSystem))))
         {
             var icon = GetIconForObject.Invoke(null, new[] { script });
             if (icon == null || !icon.Equals(systemIcon))
@@ -40,6 +36,5 @@ public class SetECSishIcons : AssetPostprocessor
         }
 
         var entityIcon = Resources.Load<Texture2D>("ECSishEntity");
-		firstCall = true;
     }
 }
