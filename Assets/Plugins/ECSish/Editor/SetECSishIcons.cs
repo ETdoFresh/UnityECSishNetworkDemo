@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class SetECSishIcons : AssetPostprocessor
 {
+	private static bool firstCall = true;
     private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
+		if (!firstCall) return;
+		firstCall = false;
+		
         MethodInfo GetIconForObject = typeof(EditorGUIUtility).GetMethod("GetIconForObject", BindingFlags.Static | BindingFlags.NonPublic);
         MethodInfo SetIconForObject = typeof(EditorGUIUtility).GetMethod("SetIconForObject", BindingFlags.Static | BindingFlags.NonPublic);
         MethodInfo CopyMonoScriptIconToImporters = typeof(MonoImporter).GetMethod("CopyMonoScriptIconToImporters", BindingFlags.Static | BindingFlags.NonPublic);
@@ -36,5 +40,6 @@ public class SetECSishIcons : AssetPostprocessor
         }
 
         var entityIcon = Resources.Load<Texture2D>("ECSishEntity");
+		firstCall = true;
     }
 }
